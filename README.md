@@ -1,2 +1,3 @@
-# Course_DT187G_JavaII
+# DT187G - JavaII
+
 Object-oriented programming in Java
