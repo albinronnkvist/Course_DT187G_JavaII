@@ -1,6 +1,9 @@
 package com.albinronnkvist;
 
-public class MathOperations {
+public final class MathOperations {
+    private MathOperations() {
+    }
+
     public static int addNumbers(int a, int b) {
         return a + b;
     }
