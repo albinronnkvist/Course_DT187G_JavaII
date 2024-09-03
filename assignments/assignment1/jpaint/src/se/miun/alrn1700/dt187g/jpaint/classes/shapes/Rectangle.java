@@ -32,38 +32,51 @@ public class Rectangle extends Shape {
         return 0;
     }
 
+    // TODO: implement
     @Override
     public void draw() {
         throw new UnsupportedOperationException("Unimplemented method 'draw'");
     }
 
+    // TODO: implement
     @Override
     public void draw(Graphics g) {
         throw new UnsupportedOperationException("Unimplemented method 'draw'");
     }
 
+    // TODO: implement
     @Override
     public double getCircumference() {
         throw new UnsupportedOperationException("Unimplemented method 'getCircumference'");
     }
 
+    // TODO: implement
     @Override
     public double getArea() {
         throw new UnsupportedOperationException("Unimplemented method 'getArea'");
     }
 
+    // TODO: implement
     @Override
     public void addPoint(Point p) {
         throw new UnsupportedOperationException("Unimplemented method 'addPoint'");
     }
 
+    // TODO: implement
     @Override
     public void addPoint(double x, double y) {
         throw new UnsupportedOperationException("Unimplemented method 'addPoint'");
     }
 
+    // TODO: implement
     @Override
     public boolean hasEndpoint() {
         throw new UnsupportedOperationException("Unimplemented method 'hasEndpoint'");
+    }
+
+    // TODO: implement
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException("Unimplemented method 'toString'");
     }
 }
