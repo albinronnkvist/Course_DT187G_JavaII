@@ -1,4 +1,4 @@
-package com.albinronnkvist;
+package com.albinronnkvist.mavenproject;
 
 public final class MathOperations {
     private MathOperations() {
