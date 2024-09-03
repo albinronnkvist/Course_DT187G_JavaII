@@ -1,4 +1,4 @@
-package se.miun.alrn1700.dt187g.jpaint.test;
+package se.miun.alrn1700.dt187g.jpaint.tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
