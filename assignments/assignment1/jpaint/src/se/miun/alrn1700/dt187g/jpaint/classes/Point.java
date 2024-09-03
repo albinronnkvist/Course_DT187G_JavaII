@@ -1,4 +1,4 @@
-package se.miun.alrn1700.dt187g.jpaint;
+package se.miun.alrn1700.dt187g.jpaint.classes;
 /**
 * TODO: explain
 *
@@ -37,7 +37,7 @@ public class Point {
     }
 
     @Override
-    public string toString() {
+    public String toString() {
         return "[" + x + ", " + y + "]";
     }
 }

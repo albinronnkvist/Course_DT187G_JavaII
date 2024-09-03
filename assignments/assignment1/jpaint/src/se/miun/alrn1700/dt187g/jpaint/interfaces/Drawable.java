@@ -1,4 +1,4 @@
-package se.miun.alrn1700.dt187g.jpaint;
+package se.miun.alrn1700.dt187g.jpaint.interfaces;
 /**
 * TODO: explain
 *

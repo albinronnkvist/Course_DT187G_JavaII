@@ -1,4 +1,7 @@
-package se.miun.alrn1700.dt187g.jpaint;
+package se.miun.alrn1700.dt187g.jpaint.classes;
+
+import se.miun.alrn1700.dt187g.jpaint.interfaces.Drawable;
+
 /**
 * TODO: explain
 *
@@ -16,26 +19,20 @@ public abstract class Shape implements Drawable {
         this.points[0] = p;
     }
 
-    public getColor() {
+    public String getColor() {
         return this.color;
     }
 
-    public setColor(String color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
-    public abstract double getCircumference() {
-    }
+    public abstract double getCircumference();
 
-    public abstract double getArea() {
-    }
+    public abstract double getArea();
 
-    public abstract void addPoint(Point p) {
-    }
+    public abstract void addPoint(Point p);
+    public abstract void addPoint(double x, double y);
 
-    public abstract void addPoint(double x, double y) {
-    }
-
-    public abstract boolean hasEndpoint() {
-    }
+    public abstract boolean hasEndpoint();
 }
