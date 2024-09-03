@@ -1,3 +1,4 @@
+package se.miun.alrn1700.dt187g.jpaint;
 /**
 * A short description (in Swedish or English) of the class.
 *
