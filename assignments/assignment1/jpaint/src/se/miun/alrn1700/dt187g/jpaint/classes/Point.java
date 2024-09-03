@@ -1,3 +1,11 @@
+package se.miun.alrn1700.dt187g.jpaint;
+/**
+* TODO: explain
+*
+* @author Albin Rönnkvist (alrn1700)
+* @version 1.0
+*/
+
 public class Point {
     private double x;
     private double y;
