@@ -56,7 +56,7 @@ public class Circle extends Shape {
     public boolean hasEndpoint() {
         throw new UnsupportedOperationException("Unimplemented method 'hasEndpoint'");
     }
-    
+
     // TODO: implement
     @Override
     public String toString() {
