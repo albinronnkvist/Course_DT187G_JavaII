@@ -1,4 +1,4 @@
-# Association
+# Association ("Knows of")
 
 Association represents a relationship where one class knows of or interacts with another class. This is the most general type of relationship and indicates that objects of one class can reference objects of another class.
 

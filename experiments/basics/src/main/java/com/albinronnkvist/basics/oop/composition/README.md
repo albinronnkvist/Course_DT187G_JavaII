@@ -1,4 +1,4 @@
-# Composition
+# Composition ("Strong has a")
 
 Composition is a stronger form of aggregation where the part cannot exist independently of the whole. When the whole is destroyed, the parts are also destroyed.
 

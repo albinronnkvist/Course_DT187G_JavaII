@@ -1,4 +1,4 @@
-# Aggregation
+# Aggregation ("Has a")
 
 Aggregation is a type of association that represents a whole-part relationship where the part can exist independently of the whole. 
 It shows that one class is composed of one or more instances of another class, but these instances can live on their own.
