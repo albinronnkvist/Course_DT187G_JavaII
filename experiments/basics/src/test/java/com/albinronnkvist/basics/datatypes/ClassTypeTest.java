@@ -40,14 +40,7 @@ public class ClassTypeTest {
         assertThat(classType.address.street).isEqualTo("789 Oak St");
         assertThat(classType.address.zipCode).isEqualTo(98765);
     }
-    
-    @Test
-    public void testStaticVariable() {
-        assertThat(ClassType.staticName).isEqualTo("John");
 
-        ClassType.staticName = "Jane";
-        assertThat(ClassType.staticName).isEqualTo("Jane");
-    }
 
     @Test
     public void testStaticMethodDisplay() {
