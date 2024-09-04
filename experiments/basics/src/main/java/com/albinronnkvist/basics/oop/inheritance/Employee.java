@@ -1,7 +1,7 @@
 package com.albinronnkvist.basics.oop.inheritance;
 
 // Sub/child class
-public class Employee extends Person {
+public class Employee extends Person { // Employee "Is-a" Person
     private String department;
 
     public Employee(String name, int age, String department) {
