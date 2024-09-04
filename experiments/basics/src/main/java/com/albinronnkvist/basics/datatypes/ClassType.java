@@ -15,7 +15,10 @@ public class ClassType {
     // Static variables
     // A static variable is a variable that belongs to the class itself, rather than to any instance of a class.
     // If one instance modifies the static variable, the change is reflected across all instances.
-    static String staticName = "John";
+    public static String staticName = "John";
+
+    // A constant value that can't be modified
+    public static final int staticAge = 30;
 
 
 
