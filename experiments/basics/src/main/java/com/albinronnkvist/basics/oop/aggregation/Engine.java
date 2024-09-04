@@ -1,4 +1,4 @@
-package com.albinronnkvist.basics.oop.composition;
+package com.albinronnkvist.basics.oop.aggregation;
 
 // Part of the "whole" that cannot exist independently
 public class Engine {

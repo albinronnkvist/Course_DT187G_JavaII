@@ -1,6 +1,12 @@
 # Aggregation
 
-Aggregation is a special form of composition where the lifetime of the part is independent of the whole. It represents a "whole-part" relationship but with independent lifetimes.
+Aggregation is a type of association that represents a whole-part relationship where the part can exist independently of the whole. 
+It shows that one class is composed of one or more instances of another class, but these instances can live on their own.
 
-Aggregation is implemented by including an instance of another class as a field, but with the understanding that the contained object can exist independently of the container.
+## Examples
+
+- Class A has a Class B: If Class A has an aggregation relationship with Class B, then A is composed of B, but B can exist without A.
+- Real-world analogy: A "Library" class might aggregate a "Book" class, where a library has books, but the books can exist independently of the library.
+
+## Java implementation
 
