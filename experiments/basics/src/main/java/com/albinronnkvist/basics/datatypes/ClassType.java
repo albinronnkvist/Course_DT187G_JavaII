@@ -18,7 +18,7 @@ public class ClassType {
     public static String staticName = "John";
 
     // A constant value that can't be modified
-    public static final int staticAge = 30;
+    public static final int STATIC_AGE = 30;
 
 
 
