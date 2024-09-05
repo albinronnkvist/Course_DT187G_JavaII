@@ -1,11 +1,11 @@
 package se.miun.alrn1700.dt187g.jpaint.tests;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTests {
     @Test
     public void testApp() {
-        assertTrue(true);
+        assertThat(true).isTrue();
     }
 }

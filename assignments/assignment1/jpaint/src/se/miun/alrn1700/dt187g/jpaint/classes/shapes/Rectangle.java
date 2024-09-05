@@ -21,61 +21,84 @@ public class Rectangle extends Shape {
         this(new Point(x, y), color);
     }
 
-    // TODO: implement
     public double getWidth() {
-        return 0;
+        if(!hasEndpoint()){
+            return 0;
+        }
+
+        var startPointX = points[0].getX();
+        var endPointX = points[1].getX();
+        
+        return Math.abs(startPointX - endPointX);
     }
 
-    // TODO: implement
     public double getHeight() {
-        return 0;
+        if(!hasEndpoint()){
+            return 0;
+        }
+        
+        var startPointY = points[0].getY();
+        var endPointY = points[1].getY();
+        
+        return Math.abs(startPointY - endPointY);
     }
 
-    // TODO: implement
+    @Override
+    public double getCircumference() {
+        if(!hasEndpoint()){
+            return 0;
+        }
+
+        return 2 * (getWidth() + getHeight());
+    }
+
+    @Override
+    public double getArea() {
+        if(!hasEndpoint()){
+            return 0;
+        }
+
+        return getWidth() * getHeight();
+    }
+
     @Override
     public void draw() {
-        throw new UnsupportedOperationException("Unimplemented method 'draw'");
+        System.out.println(this.toString());
     }
 
-    // TODO: implement
+    // Implement in another assignment
     @Override
     public void draw(Graphics g) {
         throw new UnsupportedOperationException("Unimplemented method 'draw'");
     }
 
-    // TODO: implement
-    @Override
-    public double getCircumference() {
-        throw new UnsupportedOperationException("Unimplemented method 'getCircumference'");
-    }
 
-    // TODO: implement
-    @Override
-    public double getArea() {
-        throw new UnsupportedOperationException("Unimplemented method 'getArea'");
-    }
-
-    // TODO: implement
     @Override
     public void addPoint(Point p) {
-        throw new UnsupportedOperationException("Unimplemented method 'addPoint'");
+        points[1] = p;
     }
 
-    // TODO: implement
     @Override
     public void addPoint(double x, double y) {
-        throw new UnsupportedOperationException("Unimplemented method 'addPoint'");
+        addPoint(new Point(x, y));
     }
 
-    // TODO: implement
     @Override
     public boolean hasEndpoint() {
-        throw new UnsupportedOperationException("Unimplemented method 'hasEndpoint'");
+        return points[1] != null;
     }
 
-    // TODO: implement
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Unimplemented method 'toString'");
+        var rectangleInfo = new StringBuilder();
+        rectangleInfo.append("Rectangle[");
+        rectangleInfo.append("start=" + points[0].toString()); 
+        rectangleInfo.append(" end=" + (hasEndpoint() ? points[1].toString() : "N/A"));
+        rectangleInfo.append(" width=" + (hasEndpoint() ? getWidth() : "N/A"));
+        rectangleInfo.append(" height=" + (hasEndpoint() ? getHeight() : "N/A"));
+        rectangleInfo.append(" color=" + (getColor() != null && !getColor().trim().isEmpty() ? getColor() : "N/A"));
+        rectangleInfo.append("]");
+
+        return rectangleInfo.toString();
     }
 }
