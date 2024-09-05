@@ -1,13 +1,20 @@
-package se.miun.alrn1700.dt187g.jpaint.classes;
-
-import se.miun.alrn1700.dt187g.jpaint.interfaces.Drawable;
-
 /**
-* TODO: explain
+* An abstaction class for shapes.
+* This class is abstract and can't be instantiated on its own, it needs to be subclassed by another class to use its properties.
+*
+* It implements the Drawable interface and therefore have to implement all of its abstract methods 
+*   - (Drawable doesn't contain any default or static methods).
+* 
+* It defines both concrete (with implementation) and abstract methods (without implementation).
 *
 * @author Albin Rönnkvist (alrn1700)
 * @version 1.0
 */
+
+package se.miun.alrn1700.dt187g.jpaint.classes;
+
+import se.miun.alrn1700.dt187g.jpaint.interfaces.Drawable;
+
 
 public abstract class Shape implements Drawable {
     private String color;
@@ -19,16 +26,20 @@ public abstract class Shape implements Drawable {
         this.points[0] = p;
     }
 
+    
     public String getColor() {
         return this.color;
     }
-
+    
     public void setColor(String color) {
         this.color = color;
     }
+    
+    // TODO: should draw() be implemented here?
+    public abstract void draw();
+    public abstract void draw(java.awt.Graphics g);
 
     public abstract double getCircumference();
-
     public abstract double getArea();
 
     public abstract void addPoint(Point p);

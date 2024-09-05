@@ -1,4 +1,3 @@
-package se.miun.alrn1700.dt187g.jpaint.classes;
 /**
 * A class which represents a Point in 2D space with x and y coordinates.
 *
@@ -8,7 +7,7 @@ package se.miun.alrn1700.dt187g.jpaint.classes;
 *
 * It has two constructors:
 *   - A default constructor which sets the x and y coordinates to 0.
-*     This is necessary since we have another explicitly defined constructor, and a default constructor is not provided by the compiler in that case.
+*     We have to explicitly define a default constructor, since we have another explicitly defined constructor, and a default constructor is not provided by the compiler in that case.
 *   - A parameterized constructor which takes two arguments: x and y coordinates.
 *
 * It also overrides the toString() method to return a custom string representation of the point.
@@ -17,6 +16,8 @@ package se.miun.alrn1700.dt187g.jpaint.classes;
 * @author Albin Rönnkvist (alrn1700)
 * @version 1.0
 */
+
+package se.miun.alrn1700.dt187g.jpaint.classes;
 
 public class Point {
     private double x;

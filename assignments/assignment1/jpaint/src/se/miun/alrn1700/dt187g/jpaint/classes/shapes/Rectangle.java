@@ -1,16 +1,16 @@
-package se.miun.alrn1700.dt187g.jpaint.classes.shapes;
-
-import java.awt.Graphics;
-
-import se.miun.alrn1700.dt187g.jpaint.classes.Point;
-import se.miun.alrn1700.dt187g.jpaint.classes.Shape;
-
 /**
 * TODO: explain
 *
 * @author Albin Rönnkvist (alrn1700)
 * @version 1.0
 */
+
+package se.miun.alrn1700.dt187g.jpaint.classes.shapes;
+
+import java.awt.Graphics;
+
+import se.miun.alrn1700.dt187g.jpaint.classes.Point;
+import se.miun.alrn1700.dt187g.jpaint.classes.Shape;
 
 public class Rectangle extends Shape {
 
