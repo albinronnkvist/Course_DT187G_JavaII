@@ -96,28 +96,28 @@ public class RectangleTests {
 
     @Test
     public void testToStringAllValuesPresent() {
-        var startPoint = new Point(1.7, 1.5);
-        var endPoint = new Point(-5, 5);
-        var rectangle = new Rectangle(startPoint, "Red");
+        var startPoint = new Point(0.0, 0.0);
+        var endPoint = new Point(10.0, 10.0);
+        var rectangle = new Rectangle(startPoint, "#0000ff");
         rectangle.addPoint(endPoint);
         
         String result = rectangle.toString();
         
         assertThat(result)
-            .isEqualTo("Rectangle[start=[1.7, 1.5] end=[-5.0, 5.0] width=6.7 height=3.5 color=Red]");
+            .isEqualTo("Rectangle[start=[0.0, 0.0] end=[10.0, 10.0] width=10.0 height=10.0 color=#0000ff]");
     }
 
     @ParameterizedTest
     @NullSource
     @ValueSource(strings = {"", "   "})
     public void testToStringWithMissingValues(String color) {
-        var startPoint = new Point(1.0, 3.0);
+        var startPoint = new Point(2.0, -5.0);
         var rectangle = new Rectangle(startPoint, color);
         
         String result = rectangle.toString();
         
         assertThat(result)
-            .isEqualTo("Rectangle[start=[1.0, 3.0] end=N/A width=N/A height=N/A color=N/A]");
+            .isEqualTo("Rectangle[start=[2.0, -5.0] end=N/A width=N/A height=N/A color=N/A]");
     }
 
     @Test
