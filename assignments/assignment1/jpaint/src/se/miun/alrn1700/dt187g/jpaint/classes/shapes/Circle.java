@@ -20,7 +20,7 @@ public class Circle extends Shape {
     }
 
     public Circle(double x, double y, String color) {
-        super(new Point(x, y), color);
+        this(new Point(x, y), color);
     }
 
     // TODO: implement

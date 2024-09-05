@@ -8,7 +8,6 @@
 package se.miun.alrn1700.dt187g.jpaint.classes.shapes;
 
 import java.awt.Graphics;
-
 import se.miun.alrn1700.dt187g.jpaint.classes.Point;
 import se.miun.alrn1700.dt187g.jpaint.classes.Shape;
 
@@ -19,7 +18,7 @@ public class Rectangle extends Shape {
     }
 
     public Rectangle(double x, double y, String color) {
-        super(new Point(x, y), color);
+        this(new Point(x, y), color);
     }
 
     // TODO: implement
