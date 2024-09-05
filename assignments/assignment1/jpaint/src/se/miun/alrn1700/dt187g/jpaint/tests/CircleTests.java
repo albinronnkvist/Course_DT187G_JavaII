@@ -126,7 +126,7 @@ public class CircleTests {
             circle.draw();
 
             assertThat(outContent.toString())
-                .contains("Circle[start=[0.0, 0.0] end=[3.0, 4.0] radius=5.0 color=Red]");
+                .contains("Circle[start=[0.0, 0.0]; end=[3.0, 4.0]; radius=5.0; color=Red]");
         } finally {
             System.setOut(System.out); // Restore to standard output stream
         }
@@ -142,7 +142,7 @@ public class CircleTests {
         String result = circle.toString();
         
         assertThat(result)
-            .isEqualTo("Circle[start=[0.0, 0.0] end=[3.0, 4.0] radius=5.0 color=#0000ff]");
+            .isEqualTo("Circle[start=[0.0, 0.0]; end=[3.0, 4.0]; radius=5.0; color=#0000ff]");
     }
 
     @ParameterizedTest
@@ -155,7 +155,7 @@ public class CircleTests {
         String result = circle.toString();
         
         assertThat(result)
-            .isEqualTo("Circle[start=[2.0, -5.0] end=N/A radius=N/A color=N/A]");
+            .isEqualTo("Circle[start=[2.0, -5.0]; end=N/A; radius=N/A; color=N/A]");
     }
 
 }

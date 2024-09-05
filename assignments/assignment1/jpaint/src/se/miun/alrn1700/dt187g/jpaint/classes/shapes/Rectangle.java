@@ -92,10 +92,10 @@ public class Rectangle extends Shape {
     public String toString() {
         var rectangleInfo = new StringBuilder();
         rectangleInfo.append("Rectangle[");
-        rectangleInfo.append("start=" + points[0].toString()); 
-        rectangleInfo.append(" end=" + (hasEndpoint() ? points[1].toString() : "N/A"));
-        rectangleInfo.append(" width=" + (hasEndpoint() ? getWidth() : "N/A"));
-        rectangleInfo.append(" height=" + (hasEndpoint() ? getHeight() : "N/A"));
+        rectangleInfo.append("start=" + points[0].toString() + ";"); 
+        rectangleInfo.append(" end=" + (hasEndpoint() ? points[1].toString() : "N/A") + ";");
+        rectangleInfo.append(" width=" + (hasEndpoint() ? getWidth() : "N/A") + ";");
+        rectangleInfo.append(" height=" + (hasEndpoint() ? getHeight() : "N/A") + ";");
         rectangleInfo.append(" color=" + (getColor() != null && !getColor().trim().isEmpty() ? getColor() : "N/A"));
         rectangleInfo.append("]");
 
