@@ -18,7 +18,7 @@ import se.miun.alrn1700.dt187g.jpaint.interfaces.Drawable;
 
 public abstract class Shape implements Drawable {
     private String color;
-    private Point[] points;
+    protected Point[] points;
 
     public Shape(Point p, String color) {
         this.color = color;
