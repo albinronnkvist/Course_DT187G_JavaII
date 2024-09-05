@@ -35,14 +35,18 @@ public abstract class Shape implements Drawable {
         this.color = color;
     }
     
-    // TODO: should draw() be implemented here?
+    @Override
     public abstract void draw();
+
+    @Override
     public abstract void draw(java.awt.Graphics g);
 
     public abstract double getCircumference();
+
     public abstract double getArea();
 
     public abstract void addPoint(Point p);
+
     public abstract void addPoint(double x, double y);
 
     public abstract boolean hasEndpoint();
