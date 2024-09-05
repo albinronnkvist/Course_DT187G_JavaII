@@ -19,6 +19,7 @@ public class RectangleTests {
         var rectangle = new Rectangle(new Point(1, 1), "Red");
         rectangle.addPoint(new Point(2, 2));
 
+        assertThat(rectangle.hasEndpoint()).isTrue();
         assertThat(rectangle.getWidth()).isEqualTo(1);
     }
 
@@ -26,6 +27,9 @@ public class RectangleTests {
     public void testAddPointWithCoordinates() {
         var rectangle = new Rectangle(new Point(1, 1), "Red");
         rectangle.addPoint(2, 2);
+
+        assertThat(rectangle.hasEndpoint()).isTrue();
+        assertThat(rectangle.getWidth()).isEqualTo(1);
     }
 
     @ParameterizedTest
