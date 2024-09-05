@@ -1,5 +1,9 @@
 /**
-* TODO: explain
+* A class which represents a circle shape.
+*
+* It inherits from the abstract Shape class
+*   - It overrides all abstract methods
+*   - It can access all public and protected members of the Shape class
 *
 * @author Albin Rönnkvist (alrn1700)
 * @version 1.0

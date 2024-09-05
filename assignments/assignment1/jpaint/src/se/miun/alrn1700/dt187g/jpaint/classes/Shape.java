@@ -1,11 +1,16 @@
 /**
 * An abstaction class for shapes.
-* This class is abstract and can't be instantiated on its own, it needs to be subclassed by another class to use its properties.
+* This class is abstract and can't be instantiated on its own, it needs to be subclassed by another class.
 *
 * It implements the Drawable interface and therefore have to implement all of its abstract methods 
 *   - (Drawable doesn't contain any default or static methods).
 * 
-* It defines both concrete (with implementation) and abstract methods (without implementation).
+* The points array has a protected access modifier so that it can be accessed by its subclasses.
+*
+* It defines both concrete methods (with implementation - the getter & setter) and abstract methods (without implementation).
+*
+* The constructor initializes the color and the points array.
+*   - The points array initializes with a size of 2 and the first element is set to the given point.
 *
 * @author Albin Rönnkvist (alrn1700)
 * @version 1.0
