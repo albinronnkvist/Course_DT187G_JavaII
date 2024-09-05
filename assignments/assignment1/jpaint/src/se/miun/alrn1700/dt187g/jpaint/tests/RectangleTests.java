@@ -99,6 +99,73 @@ public class RectangleTests {
     }
 
     @Test
+    public void testGetCircumferenceWhenNoEndPoint() {
+        var startPoint = new Point(1, 1);
+        var rectangle = new Rectangle(startPoint, "Red");
+        
+        assertThat(rectangle.getCircumference()).isEqualTo(0);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "1, 5, 12",
+        "5, 1, 12",
+        "1.5, 5.5, 14",
+        "0, 0, 0"
+    })
+    public void testGetCircumference(double width, double height, double expectedCircumference) {
+        var startPoint = new Point(0, 0);
+        var endPoint = new Point(width, height);
+        var rectangle = new Rectangle(startPoint, "Red");
+        rectangle.addPoint(endPoint);
+        
+        assertThat(rectangle.getCircumference()).isEqualTo(expectedCircumference);
+    }
+
+    @Test
+    public void testGetAreaWhenNoEndPoint() {
+        var startPoint = new Point(1, 1);
+        var rectangle = new Rectangle(startPoint, "Red");
+        
+        assertThat(rectangle.getArea()).isEqualTo(0);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "5, 3, 15",
+        "7.5, 2.5, 18.75",
+        "0, 0, 0"
+    })
+    public void testGetArea(double width, double height, double expectedArea) {
+        var startPoint = new Point(0, 0);
+        var endPoint = new Point(width, height);
+        var rectangle = new Rectangle(startPoint, "Red");
+        rectangle.addPoint(endPoint);
+        
+        assertThat(rectangle.getArea()).isEqualTo(expectedArea);
+    }
+
+    @Test
+    public void testDraw() {
+        var startPoint = new Point(1.7, 1.5);
+        var endPoint = new Point(-5, 5);
+        var rectangle = new Rectangle(startPoint, "Red");
+        rectangle.addPoint(endPoint);
+        
+        try {
+            final var outContent = new ByteArrayOutputStream(); // Custom output stream
+            System.setOut(new PrintStream(outContent)); // Reassign to custom output stream
+
+            rectangle.draw();
+
+            assertThat(outContent.toString())
+                .contains("Rectangle[start=[1.7, 1.5] end=[-5.0, 5.0] width=6.7 height=3.5 color=Red]");
+        } finally {
+            System.setOut(System.out); // Restore to standard output stream
+        }
+    }
+    
+    @Test
     public void testToStringAllValuesPresent() {
         var startPoint = new Point(0.0, 0.0);
         var endPoint = new Point(10.0, 10.0);
@@ -122,72 +189,5 @@ public class RectangleTests {
         
         assertThat(result)
             .isEqualTo("Rectangle[start=[2.0, -5.0] end=N/A width=N/A height=N/A color=N/A]");
-    }
-
-    @Test
-    public void testDraw() {
-        var startPoint = new Point(1.7, 1.5);
-        var endPoint = new Point(-5, 5);
-        var rectangle = new Rectangle(startPoint, "Red");
-        rectangle.addPoint(endPoint);
-        
-        try {
-            final var outContent = new ByteArrayOutputStream(); // Custom output stream
-            System.setOut(new PrintStream(outContent)); // Reassign to custom output stream
-
-            rectangle.draw();
-
-            assertThat(outContent.toString())
-                .contains("Rectangle[start=[1.7, 1.5] end=[-5.0, 5.0] width=6.7 height=3.5 color=Red]");
-        } finally {
-            System.setOut(System.out); // Restore to standard output stream
-        }
-    }
-
-    @Test
-    public void getCircumferenceWhenNoEndPoint() {
-        var startPoint = new Point(1, 1);
-        var rectangle = new Rectangle(startPoint, "Red");
-        
-        assertThat(rectangle.getCircumference()).isEqualTo(0);
-    }
-
-    @ParameterizedTest
-    @CsvSource({
-        "1, 5, 12",
-        "5, 1, 12",
-        "1.5, 5.5, 14",
-        "0, 0, 0"
-    })
-    public void getCircumference(double width, double height, double expectedCircumference) {
-        var startPoint = new Point(0, 0);
-        var endPoint = new Point(width, height);
-        var rectangle = new Rectangle(startPoint, "Red");
-        rectangle.addPoint(endPoint);
-        
-        assertThat(rectangle.getCircumference()).isEqualTo(expectedCircumference);
-    }
-
-    @Test
-    public void getAreaWhenNoEndPoint() {
-        var startPoint = new Point(1, 1);
-        var rectangle = new Rectangle(startPoint, "Red");
-        
-        assertThat(rectangle.getArea()).isEqualTo(0);
-    }
-
-    @ParameterizedTest
-    @CsvSource({
-        "5, 3, 15",
-        "7.5, 2.5, 18.75",
-        "0, 0, 0"
-    })
-    public void getArea(double width, double height, double expectedArea) {
-        var startPoint = new Point(0, 0);
-        var endPoint = new Point(width, height);
-        var rectangle = new Rectangle(startPoint, "Red");
-        rectangle.addPoint(endPoint);
-        
-        assertThat(rectangle.getArea()).isEqualTo(expectedArea);
     }
 }
