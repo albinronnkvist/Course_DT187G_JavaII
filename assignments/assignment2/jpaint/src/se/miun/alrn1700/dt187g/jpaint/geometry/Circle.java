@@ -66,6 +66,16 @@ public class Circle extends Shape {
     }
 
     @Override
+    public void addPoint(Point p) {
+        this.points.add(1, p);
+    }
+
+    @Override
+    public void addPoint(double x, double y) {
+        addPoint(new Point(x, y));
+    }
+
+    @Override
     public boolean hasEndpoint() {
         return points.get(1) != null;
     }

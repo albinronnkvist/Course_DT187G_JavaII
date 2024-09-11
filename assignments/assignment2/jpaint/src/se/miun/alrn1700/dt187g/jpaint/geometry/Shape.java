@@ -18,7 +18,7 @@ public abstract class Shape implements Drawable {
     public Shape(Point p, String color) {
         this.color = color;
         this.points = new ArrayList<Point>();
-        this.points.add(p); // TODO: should this be here?
+        this.points.add(p);
     }
 
     
