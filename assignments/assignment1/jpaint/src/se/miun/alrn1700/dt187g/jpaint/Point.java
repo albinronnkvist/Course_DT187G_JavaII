@@ -1,3 +1,4 @@
+package se.miun.alrn1700.dt187g.jpaint;
 /**
 * A class which represents a Point in 2D space with x and y coordinates.
 *
@@ -16,8 +17,6 @@
 * @author Albin Rönnkvist (alrn1700)
 * @version 1.0
 */
-
-package se.miun.alrn1700.dt187g.jpaint.classes;
 
 public class Point {
     private double x;

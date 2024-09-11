@@ -1,3 +1,4 @@
+package se.miun.alrn1700.dt187g.jpaint;
 /**
 * An interface that other "drawable" classes can implement.
 * The interface defines a set of public abstract methods (methods without implementation).
@@ -7,8 +8,6 @@
 * @author Albin Rönnkvist (alrn1700)
 * @version 1.0
 */
-
-package se.miun.alrn1700.dt187g.jpaint.interfaces;
 
 public interface Drawable {
     void draw();

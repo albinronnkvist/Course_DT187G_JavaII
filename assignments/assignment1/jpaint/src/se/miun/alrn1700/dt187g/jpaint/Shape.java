@@ -1,3 +1,4 @@
+package se.miun.alrn1700.dt187g.jpaint;
 /**
 * An abstaction class for shapes.
 * This class is abstract and can't be instantiated on its own, it needs to be subclassed by another class.
@@ -15,11 +16,6 @@
 * @author Albin Rönnkvist (alrn1700)
 * @version 1.0
 */
-
-package se.miun.alrn1700.dt187g.jpaint.classes;
-
-import se.miun.alrn1700.dt187g.jpaint.interfaces.Drawable;
-
 
 public abstract class Shape implements Drawable {
     private String color;

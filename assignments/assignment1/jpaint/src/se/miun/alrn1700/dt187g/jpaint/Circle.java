@@ -1,5 +1,6 @@
+package se.miun.alrn1700.dt187g.jpaint;
 /**
-* A class which represents a rectangle shape.
+* A class which represents a circle shape.
 *
 * It inherits from the abstract Shape class
 *   - It overrides all abstract methods
@@ -9,42 +10,30 @@
 * @version 1.0
 */
 
-package se.miun.alrn1700.dt187g.jpaint.classes.shapes;
-
 import java.awt.Graphics;
-import se.miun.alrn1700.dt187g.jpaint.classes.Point;
-import se.miun.alrn1700.dt187g.jpaint.classes.Shape;
 
-public class Rectangle extends Shape {
+public class Circle extends Shape {
+    private final double PI = 3.14159265;
 
-    public Rectangle(Point p, String color) {
+    public Circle(Point p, String color) {
         super(p, color);
     }
 
-    public Rectangle(double x, double y, String color) {
+    public Circle(double x, double y, String color) {
         this(new Point(x, y), color);
     }
 
-    public double getWidth() {
+    public double getRadius() {
         if(!hasEndpoint()){
             return 0;
         }
-
+        
         var startPointX = points[0].getX();
-        var endPointX = points[1].getX();
-        
-        return Math.abs(startPointX - endPointX);
-    }
-
-    public double getHeight() {
-        if(!hasEndpoint()){
-            return 0;
-        }
-        
         var startPointY = points[0].getY();
+        var endPointX = points[1].getX();
         var endPointY = points[1].getY();
         
-        return Math.abs(startPointY - endPointY);
+        return Math.sqrt(Math.pow(endPointX - startPointX, 2) + Math.pow(endPointY - startPointY, 2));
     }
 
     @Override
@@ -53,16 +42,16 @@ public class Rectangle extends Shape {
             return 0;
         }
 
-        return 2 * (getWidth() + getHeight());
+        return 2 * PI * getRadius();
     }
-
+    
     @Override
     public double getArea() {
         if(!hasEndpoint()){
             return 0;
         }
 
-        return getWidth() * getHeight();
+        return PI * Math.pow(getRadius(), 2);
     }
 
     @Override
@@ -75,7 +64,6 @@ public class Rectangle extends Shape {
     public void draw(Graphics g) {
         throw new UnsupportedOperationException("Unimplemented method 'draw'");
     }
-
 
     @Override
     public void addPoint(Point p) {
@@ -95,11 +83,10 @@ public class Rectangle extends Shape {
     @Override
     public String toString() {
         var rectangleInfo = new StringBuilder();
-        rectangleInfo.append("Rectangle[");
+        rectangleInfo.append("Circle[");
         rectangleInfo.append("start=" + points[0].toString() + ";"); 
         rectangleInfo.append(" end=" + (hasEndpoint() ? points[1].toString() : "N/A") + ";");
-        rectangleInfo.append(" width=" + (hasEndpoint() ? getWidth() : "N/A") + ";");
-        rectangleInfo.append(" height=" + (hasEndpoint() ? getHeight() : "N/A") + ";");
+        rectangleInfo.append(" radius=" + (hasEndpoint() ? getRadius() : "N/A") + ";");
         rectangleInfo.append(" color=" + (getColor() != null && !getColor().trim().isEmpty() ? getColor() : "N/A"));
         rectangleInfo.append("]");
 

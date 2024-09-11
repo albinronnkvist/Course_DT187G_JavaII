@@ -1,10 +1,4 @@
 package se.miun.alrn1700.dt187g.jpaint;
-
-import se.miun.alrn1700.dt187g.jpaint.classes.Point;
-import se.miun.alrn1700.dt187g.jpaint.classes.Shape;
-import se.miun.alrn1700.dt187g.jpaint.classes.shapes.Circle;
-import se.miun.alrn1700.dt187g.jpaint.classes.shapes.Rectangle;
-
 /**
 * Manual tests for the Rectangle and Circle classes.
 *

@@ -2,16 +2,13 @@ package se.miun.alrn1700.dt187g.jpaint.tests;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import se.miun.alrn1700.dt187g.jpaint.classes.Point;
-import se.miun.alrn1700.dt187g.jpaint.classes.shapes.Circle;
-
+import se.miun.alrn1700.dt187g.jpaint.Circle;
+import se.miun.alrn1700.dt187g.jpaint.Point;
 import static org.assertj.core.api.Assertions.*;
 
 public class CircleTests {

@@ -1,17 +1,16 @@
 package se.miun.alrn1700.dt187g.jpaint.tests;
 
-import se.miun.alrn1700.dt187g.jpaint.classes.Point;
-import se.miun.alrn1700.dt187g.jpaint.classes.shapes.Rectangle;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.assertj.core.api.Assertions.*;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import se.miun.alrn1700.dt187g.jpaint.Point;
+import se.miun.alrn1700.dt187g.jpaint.Rectangle;
+import static org.assertj.core.api.Assertions.*;
+
 
 public class RectangleTests {
     @Test
