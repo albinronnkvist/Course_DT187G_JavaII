@@ -1,6 +1,6 @@
 package se.miun.alrn1700.dt187g.jpaint;
 /*
-* A class which represents a drawing. It can draw shapes.
+* A class which represents a drawing that can draw multiple shapes.
 *
 * @author Albin Rönnkvist (alrn1700)
 * @version 1.0

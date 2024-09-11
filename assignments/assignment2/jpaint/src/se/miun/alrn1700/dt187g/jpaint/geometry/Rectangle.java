@@ -2,10 +2,6 @@ package se.miun.alrn1700.dt187g.jpaint.geometry;
 /**
 * A class which represents a rectangle shape.
 *
-* It inherits from the abstract Shape class
-*   - It overrides all abstract methods
-*   - It can access all public and protected members of the Shape class
-*
 * @author Albin Rönnkvist (alrn1700)
 * @version 1.0
 */
