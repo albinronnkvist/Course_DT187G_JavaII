@@ -27,8 +27,8 @@ public class Rectangle extends Shape {
             return 0;
         }
 
-        var startPointX = points[0].getX();
-        var endPointX = points[1].getX();
+        var startPointX = points.get(0).getX();
+        var endPointX = points.get(1).getX();
         
         return Math.abs(startPointX - endPointX);
     }
@@ -38,8 +38,8 @@ public class Rectangle extends Shape {
             return 0;
         }
         
-        var startPointY = points[0].getY();
-        var endPointY = points[1].getY();
+        var startPointY = points.get(0).getY();
+        var endPointY = points.get(1).getY();
         
         return Math.abs(startPointY - endPointY);
     }
@@ -76,7 +76,7 @@ public class Rectangle extends Shape {
 
     @Override
     public void addPoint(Point p) {
-        points[1] = p;
+        points.add(p);
     }
 
     @Override
@@ -86,15 +86,15 @@ public class Rectangle extends Shape {
 
     @Override
     public boolean hasEndpoint() {
-        return points[1] != null;
+        return points.get(1) != null;
     }
 
     @Override
     public String toString() {
         var rectangleInfo = new StringBuilder();
         rectangleInfo.append("Rectangle[");
-        rectangleInfo.append("start=" + points[0].toString() + ";"); 
-        rectangleInfo.append(" end=" + (hasEndpoint() ? points[1].toString() : "N/A") + ";");
+        rectangleInfo.append("start=" + points.get(0).toString() + ";"); 
+        rectangleInfo.append(" end=" + (hasEndpoint() ? points.get(1).toString() : "N/A") + ";");
         rectangleInfo.append(" width=" + (hasEndpoint() ? getWidth() : "N/A") + ";");
         rectangleInfo.append(" height=" + (hasEndpoint() ? getHeight() : "N/A") + ";");
         rectangleInfo.append(" color=" + (getColor() != null && !getColor().trim().isEmpty() ? getColor() : "N/A"));
