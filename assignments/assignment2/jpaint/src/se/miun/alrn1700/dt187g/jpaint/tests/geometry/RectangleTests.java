@@ -1,4 +1,4 @@
-package se.miun.alrn1700.dt187g.jpaint.tests;
+package se.miun.alrn1700.dt187g.jpaint.tests.geometry;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
