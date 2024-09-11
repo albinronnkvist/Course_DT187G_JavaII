@@ -85,7 +85,7 @@ public class Rectangle extends Shape {
 
     @Override
     public boolean hasEndpoint() {
-        return points.get(1) != null;
+        return points.size() == 2 && points.get(1) != null;
     }
 
     @Override
