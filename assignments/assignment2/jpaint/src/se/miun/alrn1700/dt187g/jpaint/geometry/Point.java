@@ -1,4 +1,4 @@
-package se.miun.alrn1700.dt187g.jpaint;
+package se.miun.alrn1700.dt187g.jpaint.geometry;
 /**
 * A class which represents a Point in 2D space with x and y coordinates.
 *

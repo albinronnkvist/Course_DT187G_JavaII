@@ -1,4 +1,7 @@
-package se.miun.alrn1700.dt187g.jpaint;
+package se.miun.alrn1700.dt187g.jpaint.geometry;
+
+import se.miun.alrn1700.dt187g.jpaint.Drawable;
+
 /**
 * An abstaction class for shapes.
 * This class is abstract and can't be instantiated on its own, it needs to be subclassed by another class.

@@ -1,7 +1,7 @@
 package se.miun.alrn1700.dt187g.jpaint.tests;
 
 import org.junit.jupiter.api.Test;
-import se.miun.alrn1700.dt187g.jpaint.Point;
+import se.miun.alrn1700.dt187g.jpaint.geometry.Point;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PointTests {

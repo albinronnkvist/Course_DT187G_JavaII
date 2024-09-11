@@ -5,10 +5,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import se.miun.alrn1700.dt187g.jpaint.geometry.Point;
+import se.miun.alrn1700.dt187g.jpaint.geometry.Rectangle;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import se.miun.alrn1700.dt187g.jpaint.Point;
-import se.miun.alrn1700.dt187g.jpaint.Rectangle;
+
 import static org.assertj.core.api.Assertions.*;
 
 
