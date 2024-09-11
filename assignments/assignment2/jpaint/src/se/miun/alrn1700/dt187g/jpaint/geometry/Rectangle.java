@@ -75,7 +75,11 @@ public class Rectangle extends Shape {
 
     @Override
     public void addPoint(Point p) {
-        this.points.add(1, p);
+        if (this.points.size() > 1) {
+            this.points.set(1, p);
+        } else {
+            this.points.add(1, p);
+        }
     }
 
     @Override
@@ -92,10 +96,10 @@ public class Rectangle extends Shape {
     public String toString() {
         var rectangleInfo = new StringBuilder();
         rectangleInfo.append("Rectangle[");
-        rectangleInfo.append("start=" + points.get(0).toString() + ";"); 
-        rectangleInfo.append(" end=" + (hasEndpoint() ? points.get(1).toString() : "N/A") + ";");
-        rectangleInfo.append(" width=" + (hasEndpoint() ? getWidth() : "N/A") + ";");
-        rectangleInfo.append(" height=" + (hasEndpoint() ? getHeight() : "N/A") + ";");
+        rectangleInfo.append("start=" + points.get(0).toString()); 
+        rectangleInfo.append(" end=" + (hasEndpoint() ? points.get(1).toString() : "N/A"));
+        rectangleInfo.append(" width=" + (hasEndpoint() ? getWidth() : "N/A"));
+        rectangleInfo.append(" height=" + (hasEndpoint() ? getHeight() : "N/A"));
         rectangleInfo.append(" color=" + (getColor() != null && !getColor().trim().isEmpty() ? getColor() : "N/A"));
         rectangleInfo.append("]");
 

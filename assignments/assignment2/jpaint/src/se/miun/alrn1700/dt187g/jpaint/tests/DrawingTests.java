@@ -117,7 +117,7 @@ public class DrawingTests {
 
         var expectedTotalCircumference = expectedCircleCircumference + expectedRectangleCircumference;
         var expectedTotalArea = expectedCircleArea + expectedRectangleArea;
-        var expectedString = "Drawing[name=My Drawing; author=Author Name; size=2; circumference=" + expectedTotalCircumference + "; area=" + expectedTotalArea + "]";
+        var expectedString = "Drawing[name: My Drawing; author: Author Name; size: 2; circumference: " + expectedTotalCircumference + "; area: " + expectedTotalArea + "]";
         assertThat(drawing.toString()).isEqualTo(expectedString);
     }
 
@@ -132,7 +132,7 @@ public class DrawingTests {
         drawing.addShape(circle);
         drawing.addShape(rectangle);
 
-        var expectedString = String.format("Drawing[name=N/A; author=N/A; size=2; circumference=0.0; area=0.0]");
+        var expectedString = String.format("Drawing[name: ; author: ; size: 2; circumference: 0.0; area: 0.0]");
         assertThat(drawing.toString()).isEqualTo(expectedString);
     }
 }

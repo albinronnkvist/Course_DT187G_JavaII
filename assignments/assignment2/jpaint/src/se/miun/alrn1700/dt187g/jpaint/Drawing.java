@@ -1,6 +1,6 @@
 package se.miun.alrn1700.dt187g.jpaint;
 /*
-* TODO: write
+* A class which represents a drawing. It can draw shapes.
 *
 * @author Albin Rönnkvist (alrn1700)
 * @version 1.0
@@ -72,7 +72,7 @@ public class Drawing implements Drawable {
 
     @Override
     public void draw() {
-        System.out.println("A drawing by " + author + " called: " + name);
+        System.out.println("A drawing by " + author + " called " + name);
         for (var shape : shapes) {
             System.out.println("Drawing a " + shape.toString());
         }
@@ -86,16 +86,16 @@ public class Drawing implements Drawable {
 
     @Override
     public String toString() {
-        var name = this.name != null && !this.name.trim().isEmpty() ? this.name : "N/A";
-        var author = this.author != null && !this.author.trim().isEmpty() ? this.author : "N/A";
+        var name = this.name != null && !this.name.trim().isEmpty() ? this.name : "";
+        var author = this.author != null && !this.author.trim().isEmpty() ? this.author : "";
 
         var drawingInfo = new StringBuilder();
         drawingInfo.append("Drawing[");
-        drawingInfo.append("name=" + name + ";"); 
-        drawingInfo.append(" author=" + author + ";");
-        drawingInfo.append(" size=" + getSize() + ";");
-        drawingInfo.append(" circumference=" + getTotalCircumference() + ";");
-        drawingInfo.append(" area=" + getTotalArea());
+        drawingInfo.append("name: " + name + ";"); 
+        drawingInfo.append(" author: " + author + ";");
+        drawingInfo.append(" size: " + getSize() + ";");
+        drawingInfo.append(" circumference: " + getTotalCircumference() + ";");
+        drawingInfo.append(" area: " + getTotalArea());
         drawingInfo.append("]");
 
         return drawingInfo.toString();

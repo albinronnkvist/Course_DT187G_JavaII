@@ -67,7 +67,11 @@ public class Circle extends Shape {
 
     @Override
     public void addPoint(Point p) {
-        this.points.add(1, p);
+        if (this.points.size() > 1) {
+            this.points.set(1, p);
+        } else {
+            this.points.add(1, p);
+        }
     }
 
     @Override
@@ -84,9 +88,9 @@ public class Circle extends Shape {
     public String toString() {
         var rectangleInfo = new StringBuilder();
         rectangleInfo.append("Circle[");
-        rectangleInfo.append("start=" + points.get(0).toString() + ";"); 
-        rectangleInfo.append(" end=" + (hasEndpoint() ? points.get(1).toString() : "N/A") + ";");
-        rectangleInfo.append(" radius=" + (hasEndpoint() ? getRadius() : "N/A") + ";");
+        rectangleInfo.append("start=" + points.get(0).toString()); 
+        rectangleInfo.append(" end=" + (hasEndpoint() ? points.get(1).toString() : "N/A"));
+        rectangleInfo.append(" radius=" + (hasEndpoint() ? getRadius() : "N/A"));
         rectangleInfo.append(" color=" + (getColor() != null && !getColor().trim().isEmpty() ? getColor() : "N/A"));
         rectangleInfo.append("]");
 
