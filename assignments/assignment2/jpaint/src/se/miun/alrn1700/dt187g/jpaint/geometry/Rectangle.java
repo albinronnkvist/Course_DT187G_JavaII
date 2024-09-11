@@ -73,17 +73,6 @@ public class Rectangle extends Shape {
         throw new UnsupportedOperationException("Unimplemented method 'draw'");
     }
 
-
-    @Override
-    public void addPoint(Point p) {
-        points.add(p);
-    }
-
-    @Override
-    public void addPoint(double x, double y) {
-        addPoint(new Point(x, y));
-    }
-
     @Override
     public boolean hasEndpoint() {
         return points.get(1) != null;

@@ -40,9 +40,13 @@ public abstract class Shape implements Drawable {
 
     public abstract double getArea();
 
-    public abstract void addPoint(Point p);
+    public void addPoint(Point p) {
+        this.points.add(p);
+    }
 
-    public abstract void addPoint(double x, double y);
+    public void addPoint(double x, double y) {
+        addPoint(new Point(x, y));
+    }
 
     public abstract boolean hasEndpoint();
 }
