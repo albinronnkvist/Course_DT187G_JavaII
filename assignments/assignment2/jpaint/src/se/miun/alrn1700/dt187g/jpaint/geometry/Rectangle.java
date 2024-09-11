@@ -75,10 +75,10 @@ public class Rectangle extends Shape {
 
     @Override
     public void addPoint(Point p) {
-        if (this.points.size() > 1) {
-            this.points.set(1, p);
+        if (points.size() > 1) {
+            points.set(1, p);
         } else {
-            this.points.add(1, p);
+            points.add(1, p);
         }
     }
 

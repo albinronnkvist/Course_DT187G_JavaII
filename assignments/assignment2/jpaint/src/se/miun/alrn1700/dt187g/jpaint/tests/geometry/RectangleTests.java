@@ -34,6 +34,20 @@ public class RectangleTests {
         assertThat(rectangle.getWidth()).isEqualTo(1);
     }
 
+    @Test
+    public void testAddPointAddThirdShapeShouldReplaceSecond() {
+        var rectangle = new Rectangle(new Point(0, 0), "#0000ff");
+        rectangle.addPoint(new Point(5, 3));
+
+        var rectangleBefore = rectangle.toString();
+        rectangle.addPoint(new Point(7.5, 2.5));
+        var rectangleAfter = rectangle.toString();
+        
+        assertThat(rectangle.hasEndpoint()).isTrue();
+        assertThat(rectangleBefore).isEqualTo("Rectangle[start=[0.0, 0.0] end=[5.0, 3.0] width=5.0 height=3.0 color=#0000ff]");
+        assertThat(rectangleAfter).isEqualTo("Rectangle[start=[0.0, 0.0] end=[7.5, 2.5] width=7.5 height=2.5 color=#0000ff]");
+    }
+
     @ParameterizedTest
     @ValueSource(booleans = { true, false })
     public void testHasEndpoint(boolean endPointAdded) {
@@ -161,7 +175,7 @@ public class RectangleTests {
             rectangle.draw();
 
             assertThat(outContent.toString())
-                .contains("Rectangle[start=[1.7, 1.5]; end=[-5.0, 5.0]; width=6.7; height=3.5; color=Red]");
+                .contains("Rectangle[start=[1.7, 1.5] end=[-5.0, 5.0] width=6.7 height=3.5 color=Red]");
         } finally {
             System.setOut(System.out); // Restore to standard output stream
         }
@@ -177,7 +191,7 @@ public class RectangleTests {
         String result = rectangle.toString();
         
         assertThat(result)
-            .isEqualTo("Rectangle[start=[0.0, 0.0]; end=[10.0, 10.0]; width=10.0; height=10.0; color=#0000ff]");
+            .isEqualTo("Rectangle[start=[0.0, 0.0] end=[10.0, 10.0] width=10.0 height=10.0 color=#0000ff]");
     }
 
     @ParameterizedTest
@@ -190,6 +204,6 @@ public class RectangleTests {
         String result = rectangle.toString();
         
         assertThat(result)
-            .isEqualTo("Rectangle[start=[2.0, -5.0]; end=N/A; width=N/A; height=N/A; color=N/A]");
+            .isEqualTo("Rectangle[start=[2.0, -5.0] end=N/A width=N/A height=N/A color=N/A]");
     }
 }

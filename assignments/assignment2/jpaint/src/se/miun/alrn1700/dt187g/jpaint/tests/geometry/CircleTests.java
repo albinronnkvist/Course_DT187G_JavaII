@@ -7,10 +7,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
-
 import se.miun.alrn1700.dt187g.jpaint.geometry.Circle;
 import se.miun.alrn1700.dt187g.jpaint.geometry.Point;
-
 import static org.assertj.core.api.Assertions.*;
 
 public class CircleTests {
@@ -29,6 +27,21 @@ public class CircleTests {
 
         assertThat(circle.hasEndpoint()).isTrue();
     }
+
+    @Test
+    public void testAddPointAddThirdShapeShouldReplaceSecond() {
+        var circle = new Circle(new Point(0, 0), "#0000ff");
+        circle.addPoint(new Point(5, 3));
+
+        var circleBefore = circle.toString();
+        circle.addPoint(new Point(7.5, 2.5));
+        var circleAfter = circle.toString();
+        
+        assertThat(circle.hasEndpoint()).isTrue();
+        assertThat(circleBefore).isEqualTo("Circle[start=[0.0, 0.0] end=[5.0, 3.0] radius=5.830951894845301 color=#0000ff]");
+        assertThat(circleAfter).isEqualTo("Circle[start=[0.0, 0.0] end=[7.5, 2.5] radius=7.905694150420948 color=#0000ff]");
+    }
+
 
     @ParameterizedTest
     @ValueSource(booleans = { true, false })
@@ -125,7 +138,7 @@ public class CircleTests {
             circle.draw();
 
             assertThat(outContent.toString())
-                .contains("Circle[start=[0.0, 0.0]; end=[3.0, 4.0]; radius=5.0; color=Red]");
+                .contains("Circle[start=[0.0, 0.0] end=[3.0, 4.0] radius=5.0 color=Red]");
         } finally {
             System.setOut(System.out); // Restore to standard output stream
         }
@@ -141,7 +154,7 @@ public class CircleTests {
         String result = circle.toString();
         
         assertThat(result)
-            .isEqualTo("Circle[start=[0.0, 0.0]; end=[3.0, 4.0]; radius=5.0; color=#0000ff]");
+            .isEqualTo("Circle[start=[0.0, 0.0] end=[3.0, 4.0] radius=5.0 color=#0000ff]");
     }
 
     @ParameterizedTest
@@ -154,7 +167,7 @@ public class CircleTests {
         String result = circle.toString();
         
         assertThat(result)
-            .isEqualTo("Circle[start=[2.0, -5.0]; end=N/A; radius=N/A; color=N/A]");
+            .isEqualTo("Circle[start=[2.0, -5.0] end=N/A radius=N/A color=N/A]");
     }
 
 }
