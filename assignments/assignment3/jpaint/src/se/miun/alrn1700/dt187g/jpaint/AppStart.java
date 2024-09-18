@@ -1,8 +1,7 @@
 package se.miun.alrn1700.dt187g.jpaint;
 
 import javax.swing.SwingUtilities;
-
-import se.miun.studentid.dt187g.jpaint.gui.JPaintFrame;
+import se.miun.alrn1700.dt187g.jpaint.gui.JPaintFrame;
 
 public class AppStart {
 
