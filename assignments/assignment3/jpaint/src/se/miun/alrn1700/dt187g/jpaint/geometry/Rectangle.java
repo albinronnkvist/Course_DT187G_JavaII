@@ -96,7 +96,7 @@ public class Rectangle extends Shape {
         rectangleInfo.append(" end=" + (hasEndpoint() ? points.get(1).toString() : "N/A"));
         rectangleInfo.append(" width=" + (hasEndpoint() ? getWidth() : "N/A"));
         rectangleInfo.append(" height=" + (hasEndpoint() ? getHeight() : "N/A"));
-        rectangleInfo.append(" color=" + (getColor() != null && !getColor().trim().isEmpty() ? getColor() : "N/A"));
+        rectangleInfo.append(" color=" + (getColor() != null && !getColor().isBlank() ? getColor() : "N/A"));
         rectangleInfo.append("]");
 
         return rectangleInfo.toString();

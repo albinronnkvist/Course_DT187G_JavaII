@@ -87,7 +87,7 @@ public class Circle extends Shape {
         rectangleInfo.append("start=" + points.get(0).toString()); 
         rectangleInfo.append(" end=" + (hasEndpoint() ? points.get(1).toString() : "N/A"));
         rectangleInfo.append(" radius=" + (hasEndpoint() ? getRadius() : "N/A"));
-        rectangleInfo.append(" color=" + (getColor() != null && !getColor().trim().isEmpty() ? getColor() : "N/A"));
+        rectangleInfo.append(" color=" + (getColor() != null && !getColor().isBlank() ? getColor() : "N/A"));
         rectangleInfo.append("]");
 
         return rectangleInfo.toString();
