@@ -99,7 +99,8 @@ public class JPaintFrame extends JFrame {
 		 * 10.1 Initialisera StatusBarPanel
 		 * 10.2 Sätt en rimlig höjd på StatusBarPanel, exempelvis 25.
 		 */
-		// TODO
+		statusBarPanel = new StatusBarPanel();
+		statusBarPanel.setPreferredSize(new Dimension(statusBarPanel.getPreferredSize().width, 25));
 		
 
 		/*
