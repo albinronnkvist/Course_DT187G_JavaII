@@ -1,18 +1,10 @@
 package se.miun.alrn1700.dt187g.jpaint.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class JPaintFrame extends JFrame {
 
@@ -54,7 +46,13 @@ public class JPaintFrame extends JFrame {
 		 * 3. Välj ikon för programmet. Ni kan skapa en mapp som heter "img" i
 		 * root-katalogen och hänvisa till den genom "img/filenameOfYourIcon.png".
 		 */
-		this.setIconImage(new ImageIcon("img/icon.png").getImage());
+		var icon = new ImageIcon("img/icon.png");
+		if (icon.getImageLoadStatus() == MediaTracker.COMPLETE) {
+			System.out.println("Icon loaded successfully");
+		} else {
+			System.out.println("Icon failed to load");
+		}
+		this.setIconImage(icon.getImage());
 
 		/*
 		 * 4. Initialisera strängen "header" med något värde ("JPaint" exempelvis), och
@@ -174,7 +172,7 @@ public class JPaintFrame extends JFrame {
 		});
 	}
 	
-	class CustomMouseAdapter extends MouseAdapter {
+	private class CustomMouseAdapter extends MouseAdapter {
 
 		@Override
 		public void mouseDragged(MouseEvent e) {
