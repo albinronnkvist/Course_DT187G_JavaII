@@ -12,6 +12,7 @@ public class CustomTextFieldFrame extends CustomFrame implements ActionListener 
         textField = new JTextField(15);
         button = new JButton("Submit");
 
+        textField.addActionListener(this);
         button.addActionListener(this);
 
         var panel = new JPanel();
@@ -34,6 +35,12 @@ public class CustomTextFieldFrame extends CustomFrame implements ActionListener 
 
             button.setEnabled(true);
             textField.setEditable(true);
+        }
+
+        if(e.getSource() == textField)
+        {
+            var enteredText = textField.getText();
+            JOptionPane.showMessageDialog(CustomTextFieldFrame.this, "You entered: " + enteredText);
         }
     }
 }
