@@ -5,6 +5,7 @@ import java.awt.Color;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.BorderFactory;
 
 public class StatusBarPanel extends JPanel {
 
@@ -31,6 +32,7 @@ public class StatusBarPanel extends JPanel {
 
 		// 3. Sätt Layout till BorderLayout
 		this.setLayout(new BorderLayout());
+		this.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 		
 		/* 4. JPanel-objektet selectedColor ska visa den färg
 		* som du anser ska vara den förvalda färgen i ritprogrammet
@@ -45,8 +47,9 @@ public class StatusBarPanel extends JPanel {
 		 * - Lägg sedan till instansvariabeln coordinates via samma add-metod som ovan.
 		*/
 		leftPanel.setBackground(Color.GRAY);
-		leftPanel.add(new JLabel("Coordinates: "), BorderLayout.WEST);
-		leftPanel.add(coordinates, BorderLayout.EAST);
+		leftPanel.setLayout(new BorderLayout());
+		leftPanel.add(new JLabel("Coordinates: "), BorderLayout.LINE_START);
+		leftPanel.add(coordinates, BorderLayout.LINE_END);
 		
 		/* 6. rightPanel
 		 * - sätt bakgrunden för rightPanel
@@ -54,16 +57,17 @@ public class StatusBarPanel extends JPanel {
 		 * - Lägg sedan till instansvariabeln selectedColor via samma add-metod som ovan.
 		*/
 		rightPanel.setBackground(Color.GRAY);
-		rightPanel.add(new JLabel("Selected color: "), BorderLayout.WEST);
-		rightPanel.add(selectedColor, BorderLayout.EAST);
+		rightPanel.setLayout(new BorderLayout());
+		rightPanel.add(new JLabel("Selected color: "), BorderLayout.LINE_START);
+		rightPanel.add(selectedColor, BorderLayout.LINE_END);
 		
 		/*
 		 * 7. Lägg till leftPanel och rightPanel genom att anropa
 		 * this.add(Component comp, Object constraints)
 		 * för respektive panel.
 		 */
-		this.add(leftPanel, BorderLayout.WEST);
-		this.add(rightPanel, BorderLayout.EAST);
+		this.add(leftPanel, BorderLayout.LINE_START);
+		this.add(rightPanel, BorderLayout.LINE_END);
 	}
 
 	/*
