@@ -28,31 +28,7 @@ public class JPaintFrame extends JFrame {
 
 	private void init() {
 
-		// 1. Sätt storleken på JFrame till vad ni nu känner för.
-		this.setSize(500, 500);
-
-		// 2. Se till att programmet stängs ner när man trycker på krysset upp i högra hörnet.
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		/*
-		 * 3. Välj ikon för programmet. Ni kan skapa en mapp som heter "img" i
-		 * root-katalogen och hänvisa till den genom "img/filenameOfYourIcon.png".
-		 */
-		this.setIconImage(new ImageIcon("img/icon.png").getImage());
-
-		/*
-		 * 4. Initialisera strängen "header" med något värde ("JPaint" exempelvis), och
-		 * sätt detta som title för programmet. Att vi lagrar vårat applikationsnamn i
-		 * en String kommer bli tydligare till kommande uppgifter.
-		 */
-		header = "JPaint";
-		this.setTitle(header);
-		
-		/*
-		 * 5. Sätt layout för denna klass till BorderLayout
-		 */
-		this.setLayout(new BorderLayout());
-		
+		setupBasics();
 
 		/*
 		 * 6. Följande kod skapar en JPanel där vi sätter en önskad storlek på höjden
@@ -96,8 +72,13 @@ public class JPaintFrame extends JFrame {
 		 * Däremot så har vi här möjlighet att ange bredd. Sätt bredden till något
 		 * rimligt, exempelvis 100.
 		 */
-		
-		// TODO
+		final String RECTANGLE = "Rectangle";
+		final String CIRCLE = "Circle";
+		var shapes = new String[] { RECTANGLE, CIRCLE };
+		var comboBox = new JComboBox<String>(shapes);
+		comboBox.setPreferredSize(new Dimension(100, comboBox.getPreferredSize().height));
+		comboBox.setSelectedIndex(1);
+		topPanel.add(comboBox);
 
 
 		/*
@@ -152,7 +133,33 @@ public class JPaintFrame extends JFrame {
 		 * Container c.
 		 */
 		// TODO
+	}
 
+	private void setupBasics() {
+		// 1. Sätt storleken på JFrame till vad ni nu känner för.
+		this.setSize(500, 500);
+
+		// 2. Se till att programmet stängs ner när man trycker på krysset upp i högra hörnet.
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		/*
+		 * 3. Välj ikon för programmet. Ni kan skapa en mapp som heter "img" i
+		 * root-katalogen och hänvisa till den genom "img/filenameOfYourIcon.png".
+		 */
+		this.setIconImage(new ImageIcon("img/icon.png").getImage());
+
+		/*
+		 * 4. Initialisera strängen "header" med något värde ("JPaint" exempelvis), och
+		 * sätt detta som title för programmet. Att vi lagrar vårat applikationsnamn i
+		 * en String kommer bli tydligare till kommande uppgifter.
+		 */
+		header = "JPaint";
+		this.setTitle(header);
+		
+		/*
+		 * 5. Sätt layout för denna klass till BorderLayout
+		 */
+		this.setLayout(new BorderLayout());
 	}
 
 	class CustomMouseAdapter extends MouseAdapter {
