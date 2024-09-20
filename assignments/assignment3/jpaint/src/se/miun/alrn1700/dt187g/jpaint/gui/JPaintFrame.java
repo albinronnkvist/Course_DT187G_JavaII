@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class JPaintFrame extends JFrame {
 
 	private Container container = this.getContentPane();
-	private String header;
+	private final String header = "JPaint";
 	private JPanel topPanel;
 	private ColorPalettePanel colorPalettePanel;
 	private DrawingPanel drawingPanel;
@@ -59,7 +59,6 @@ public class JPaintFrame extends JFrame {
 		 * sätt detta som title för programmet. Att vi lagrar vårat applikationsnamn i
 		 * en String kommer bli tydligare till kommande uppgifter.
 		 */
-		header = "JPaint";
 		this.setTitle(header);
 		
 		/*
