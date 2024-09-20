@@ -1,9 +1,9 @@
 package com.albinronnkvist.gui;
 
-import com.albinronnkvist.gui.components.layouts.CustomBorderLayout;
+import com.albinronnkvist.gui.components.layouts.CustomFlowLayoutFrame;
 
 public class Main {
     public static void main(String[] args) {
-        var frame = new CustomBorderLayout();
+        var frame = new CustomFlowLayoutFrame();
     }
 }

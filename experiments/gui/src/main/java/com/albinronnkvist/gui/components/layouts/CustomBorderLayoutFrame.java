@@ -4,8 +4,8 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import com.albinronnkvist.gui.components.CustomFrame;
 
-public class CustomBorderLayout extends CustomFrame {
-    public CustomBorderLayout() {
+public class CustomBorderLayoutFrame extends CustomFrame {
+    public CustomBorderLayoutFrame() {
         this.setLayout(new BorderLayout());
 
         JButton northButton = new JButton("North");
