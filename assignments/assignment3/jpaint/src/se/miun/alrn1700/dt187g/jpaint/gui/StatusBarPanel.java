@@ -80,4 +80,7 @@ public class StatusBarPanel extends JPanel {
 		selectedColor.setBackground(color);
 	}
 
+	public Color getSelectedColor() {
+		return selectedColor.getBackground();
+	}
 }
