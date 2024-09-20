@@ -7,7 +7,8 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -44,8 +45,8 @@ public class JPaintFrame extends JFrame {
 		 * sätt detta som title för programmet. Att vi lagrar vårat applikationsnamn i
 		 * en String kommer bli tydligare till kommande uppgifter.
 		 */
-		this.header = "JPaint";
-		this.setTitle(this.header);
+		header = "JPaint";
+		this.setTitle(header);
 		
 		/*
 		 * 5. Sätt layout för denna klass till BorderLayout
@@ -61,7 +62,7 @@ public class JPaintFrame extends JFrame {
 		 * detta JPanel-objekt som kommer inhysa våran ColorPalettePanel samt våran
 		 * JComboBox (den som visar vilken typ av form vi ritar).
 		 */
-		JPanel topPanel = new JPanel();
+		var topPanel = new JPanel();
 		topPanel.setPreferredSize(new Dimension(0, 50));
 
 		/*
@@ -72,8 +73,17 @@ public class JPaintFrame extends JFrame {
 		 * Alternativ så anropar du ColorPalettePanel(ArrayList<ColorPanel>) och då
 		 * sköter ColorPalettePanel resten
 		 */
-		
-		// TODO
+		var colorPanels = new ArrayList<ColorPanel>(Arrays.asList(
+			new ColorPanel(Color.RED),
+			new ColorPanel(Color.ORANGE),
+			new ColorPanel(Color.YELLOW),
+			new ColorPanel(Color.GREEN),
+			new ColorPanel(Color.BLUE),
+			new ColorPanel(new Color(75, 0, 130)),
+			new ColorPanel(new Color(238, 130, 238))
+		));
+		colorPalettePanel = new ColorPalettePanel(colorPanels);
+		topPanel.add(colorPalettePanel);
 		
 
 		/*
