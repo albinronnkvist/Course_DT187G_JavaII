@@ -1,9 +1,9 @@
 package com.albinronnkvist.gui;
 
-import com.albinronnkvist.gui.components.CustomOptionPaneFrame;
+import com.albinronnkvist.gui.components.CustomTextFieldFrame;
 
 public class Main {
     public static void main(String[] args) {
-        var frame = new CustomOptionPaneFrame();
+        var frame = new CustomTextFieldFrame();
     }
 }
