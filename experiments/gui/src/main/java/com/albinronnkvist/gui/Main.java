@@ -1,9 +1,9 @@
 package com.albinronnkvist.gui;
 
-import com.albinronnkvist.gui.components.CustomFileChooserFrame;
+import com.albinronnkvist.gui.components.CustomColorChooserFrame;
 
 public class Main {
     public static void main(String[] args) {
-        var frame = new CustomFileChooserFrame();
+        var frame = new CustomColorChooserFrame();
     }
 }
