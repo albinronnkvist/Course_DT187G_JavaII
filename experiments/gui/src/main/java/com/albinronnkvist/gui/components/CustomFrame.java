@@ -12,7 +12,5 @@ public class CustomFrame extends JFrame {
         this.getContentPane().setBackground(Color.lightGray);
         
         this.setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
-        
-        this.setVisible(true);
     }
 }
