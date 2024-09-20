@@ -1,11 +1,8 @@
 package com.albinronnkvist.gui.components;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
-
-public class CustomButtonFrame extends CustomFrame implements ActionListener {
+public class CustomButtonFrame extends CustomFrame { // implements ActionListener
 
     private JButton button;
 
@@ -13,7 +10,7 @@ public class CustomButtonFrame extends CustomFrame implements ActionListener {
         this.button = new JButton();
         this.button.setText("Click me!");
         this.button.setBounds(200, 100, 100, 50);
-        button.addActionListener(this);
+        button.addActionListener(e -> System.out.println("You clicked the button!")); // Shortcut
 
         this.add(button);
 
@@ -21,10 +18,10 @@ public class CustomButtonFrame extends CustomFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    @Override
+/*     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.button) {
             System.out.println("You clicked the button!");
         }
-    }
+    } */
 }
