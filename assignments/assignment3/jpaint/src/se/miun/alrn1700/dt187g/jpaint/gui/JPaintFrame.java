@@ -16,11 +16,12 @@ import javax.swing.JPanel;
 
 public class JPaintFrame extends JFrame {
 
-	private String header;
 	private Container c = this.getContentPane();
-	private StatusBarPanel statusBarPanel;
-	private DrawingPanel drawingPanel;
+	private String header;
+	private JPanel topPanel;
 	private ColorPalettePanel colorPalettePanel;
+	private DrawingPanel drawingPanel;
+	private StatusBarPanel statusBarPanel;
 
 	public JPaintFrame() {
 		init();
@@ -29,114 +30,17 @@ public class JPaintFrame extends JFrame {
 	private void init() {
 
 		setupBasics();
-
-		/*
-		 * 6. Följande kod skapar en JPanel där vi sätter en önskad storlek på höjden
-		 * genom att skicka ett Dimension-objekt till prefferedSize (Dimension(width,
-		 * height)). Att vi anger width till 0 är mest för att vi inte kommer kunna
-		 * påverka detta ändå (den kommer bli så bred som applikationen är bred). Det är
-		 * detta JPanel-objekt som kommer inhysa våran ColorPalettePanel samt våran
-		 * JComboBox (den som visar vilken typ av form vi ritar).
-		 */
-		var topPanel = new JPanel();
-		topPanel.setPreferredSize(new Dimension(0, 50));
-
-		/*
-		 * 7. Initialisera ColorPalettePanel. Om du väljer att initialisera
-		 * ColorPalettePanel via "default"-constructorn (den utan argument), då måste du
-		 * anropa addColorPanel för varje ColorPanel-objekt du vill lägga till.
-		 * 
-		 * Alternativ så anropar du ColorPalettePanel(ArrayList<ColorPanel>) och då
-		 * sköter ColorPalettePanel resten
-		 */
-		var colorPanels = new ArrayList<ColorPanel>(Arrays.asList(
-			new ColorPanel(Color.RED),
-			new ColorPanel(Color.ORANGE),
-			new ColorPanel(Color.YELLOW),
-			new ColorPanel(Color.GREEN),
-			new ColorPanel(Color.BLUE),
-			new ColorPanel(new Color(75, 0, 130)),
-			new ColorPanel(new Color(238, 130, 238))
-		));
-		colorPalettePanel = new ColorPalettePanel(colorPanels);
-		topPanel.add(colorPalettePanel);
-		
-
-		/*
-		 * 8.
-		 * 8.1 Skapa en String[] som håller "Rectangle" och "Circle" 
-		 * 8.2 Skapa en JComboBox<String> och initalisera den med arrayen. 
-		 * 8.3 Välj vilken form som ska vara default.
-		 * 
-		 * Våran JComboBox kommer vara bunden till den höjd som anges av topPanel.
-		 * Däremot så har vi här möjlighet att ange bredd. Sätt bredden till något
-		 * rimligt, exempelvis 100.
-		 */
-		final String RECTANGLE = "Rectangle";
-		final String CIRCLE = "Circle";
-		var shapes = new String[] { RECTANGLE, CIRCLE };
-		var comboBox = new JComboBox<String>(shapes);
-		comboBox.setPreferredSize(new Dimension(100, comboBox.getPreferredSize().height));
-		comboBox.setSelectedIndex(1);
-		topPanel.add(comboBox);
-
-
-		/*
-		 * 9.
-		 * 9.1 Initialisera DrawingPanel
-		 * 9.2 Deklarera en CustomMouseAdapter och initialisera den.
-		 * 9.3 Lägg till denna CustomMouseAdapter som MouseListener till drawingPanel
-		 * 9.4 Lägg även till CustomMouseAdapter som MouseMotionListener till drawingPanel
-		 */
-		drawingPanel = new DrawingPanel();
-		var customMouseAdapter = new CustomMouseAdapter();
-		drawingPanel.addMouseListener(customMouseAdapter);
-		drawingPanel.addMouseMotionListener(customMouseAdapter);
-
-		
-		/*
-		 * 10.
-		 * 10.1 Initialisera StatusBarPanel
-		 * 10.2 Sätt en rimlig höjd på StatusBarPanel, exempelvis 25.
-		 */
-		statusBarPanel = new StatusBarPanel();
-		statusBarPanel.setPreferredSize(new Dimension(statusBarPanel.getPreferredSize().width, 25));
-		
-
-		/*
-		 * 11. Nu när StatusBarPanel väl är initialiserad så kan vi
-		 * sätta en MouseListener för våra ColorPanel's. Eftersom vi inte har gått igenom
-		 * anonyma klasser än, och eftersom det enkaste sättet att uträtta detta är genom en
-		 * anonym klass, så följer den med här. 
-		 * Ni måste fortfarande implementera mousePressed dock.
-		 * Det vi vill ska hända är att när ett objekt klickas på, så ska dess bakgrundsfärg skickas
-		 * som argument till StatusBarPanel.updateSelectedColor(Color color).
-		 * Vi kommer behöva anropa MouseEvent.getSource() (i ren syntax innebär det alltså "e.getSource()".
-		 * MouseEvent.getSource() returnerar ett Object. Vi kan inte få reda på bakgrundsfärgen bara genom 
-		 * ett Object. Så vi måste "casta" det Object som returneras från getSource() till en ColorPanel.
-		 * 
-		 * 
-		 * */
-		colorPalettePanel.setMouseListenerForColorPanels(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO
-			}
-		});
-
-		/*
-		 * 12.
-		 * 12.1 Sätt layouten för topPanel till BorderLayout.
-		 * 12.2 "adda" colorPalettePanel med lämplig constraint (dvs BorderLayout.LÄMPLIG_CONSTRAINT)
-		 * 12.3 "adda" din JComboBox med lämplig constraint (dvs BorderLayout.LÄMPLIG_CONSTRAINT)
-		 */
-		// TODO
+		setupTopPanel();
+		setupDrawingPanel();
+		setupStatusBarPanel();
 		
 		/*
 		 * 13. Avslutningsvis, lägg till topPanel, drawingPanel och statusBarPanel till 
 		 * Container c.
 		 */
-		// TODO
+		this.add(topPanel, BorderLayout.NORTH);
+		this.add(drawingPanel, BorderLayout.CENTER);
+		this.add(statusBarPanel, BorderLayout.SOUTH);
 	}
 
 	private void setupBasics() {
@@ -166,6 +70,112 @@ public class JPaintFrame extends JFrame {
 		this.setLayout(new BorderLayout());
 	}
 
+	private void setupTopPanel() {
+		/*
+		 * 6. Följande kod skapar en JPanel där vi sätter en önskad storlek på höjden
+		 * genom att skicka ett Dimension-objekt till prefferedSize (Dimension(width,
+		 * height)). Att vi anger width till 0 är mest för att vi inte kommer kunna
+		 * påverka detta ändå (den kommer bli så bred som applikationen är bred). Det är
+		 * detta JPanel-objekt som kommer inhysa våran ColorPalettePanel samt våran
+		 * JComboBox (den som visar vilken typ av form vi ritar).
+		 */
+		topPanel = new JPanel();
+		topPanel.setPreferredSize(new Dimension(0, 50));
+
+		/*
+		 * 7. Initialisera ColorPalettePanel. Om du väljer att initialisera
+		 * ColorPalettePanel via "default"-constructorn (den utan argument), då måste du
+		 * anropa addColorPanel för varje ColorPanel-objekt du vill lägga till.
+		 * 
+		 * Alternativ så anropar du ColorPalettePanel(ArrayList<ColorPanel>) och då
+		 * sköter ColorPalettePanel resten
+		 */
+		var colorPanels = new ArrayList<ColorPanel>(Arrays.asList(
+			new ColorPanel(Color.RED),
+			new ColorPanel(Color.ORANGE),
+			new ColorPanel(Color.YELLOW),
+			new ColorPanel(Color.GREEN),
+			new ColorPanel(Color.BLUE),
+			new ColorPanel(new Color(75, 0, 130)),
+			new ColorPanel(new Color(238, 130, 238))
+		));
+		colorPalettePanel = new ColorPalettePanel(colorPanels);
+		
+
+		/*
+		 * 8.
+		 * 8.1 Skapa en String[] som håller "Rectangle" och "Circle" 
+		 * 8.2 Skapa en JComboBox<String> och initalisera den med arrayen. 
+		 * 8.3 Välj vilken form som ska vara default.
+		 * 
+		 * Våran JComboBox kommer vara bunden till den höjd som anges av topPanel.
+		 * Däremot så har vi här möjlighet att ange bredd. Sätt bredden till något
+		 * rimligt, exempelvis 100.
+		 */
+		final String RECTANGLE = "Rectangle";
+		final String CIRCLE = "Circle";
+		var shapes = new String[] { RECTANGLE, CIRCLE };
+		var comboBox = new JComboBox<String>(shapes);
+		comboBox.setPreferredSize(new Dimension(100, comboBox.getPreferredSize().height));
+		comboBox.setSelectedIndex(1);
+
+		/*
+		 * 12.
+		 * 12.1 Sätt layouten för topPanel till BorderLayout.
+		 * 12.2 "adda" colorPalettePanel med lämplig constraint (dvs BorderLayout.LÄMPLIG_CONSTRAINT)
+		 * 12.3 "adda" din JComboBox med lämplig constraint (dvs BorderLayout.LÄMPLIG_CONSTRAINT)
+		 */
+		topPanel.setLayout(new BorderLayout());
+		topPanel.add(colorPalettePanel, BorderLayout.WEST);
+		topPanel.add(comboBox, BorderLayout.EAST);
+	}
+
+	private void setupDrawingPanel() {
+		/*
+		 * 9.
+		 * 9.1 Initialisera DrawingPanel
+		 * 9.2 Deklarera en CustomMouseAdapter och initialisera den.
+		 * 9.3 Lägg till denna CustomMouseAdapter som MouseListener till drawingPanel
+		 * 9.4 Lägg även till CustomMouseAdapter som MouseMotionListener till drawingPanel
+		 */
+		drawingPanel = new DrawingPanel();
+		var customMouseAdapter = new CustomMouseAdapter();
+		drawingPanel.addMouseListener(customMouseAdapter);
+		drawingPanel.addMouseMotionListener(customMouseAdapter);
+	}
+
+	private void setupStatusBarPanel() {
+		/*
+		 * 10.
+		 * 10.1 Initialisera StatusBarPanel
+		 * 10.2 Sätt en rimlig höjd på StatusBarPanel, exempelvis 25.
+		 */
+		statusBarPanel = new StatusBarPanel();
+		statusBarPanel.setPreferredSize(new Dimension(statusBarPanel.getPreferredSize().width, 25));
+		
+
+		/*
+		 * 11. Nu när StatusBarPanel väl är initialiserad så kan vi
+		 * sätta en MouseListener för våra ColorPanel's. Eftersom vi inte har gått igenom
+		 * anonyma klasser än, och eftersom det enkaste sättet att uträtta detta är genom en
+		 * anonym klass, så följer den med här. 
+		 * Ni måste fortfarande implementera mousePressed dock.
+		 * Det vi vill ska hända är att när ett objekt klickas på, så ska dess bakgrundsfärg skickas
+		 * som argument till StatusBarPanel.updateSelectedColor(Color color).
+		 * Vi kommer behöva anropa MouseEvent.getSource() (i ren syntax innebär det alltså "e.getSource()".
+		 * MouseEvent.getSource() returnerar ett Object. Vi kan inte få reda på bakgrundsfärgen bara genom 
+		 * ett Object. Så vi måste "casta" det Object som returneras från getSource() till en ColorPanel.
+		 * 
+		 * 
+		 * */
+		colorPalettePanel.setMouseListenerForColorPanels(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				statusBarPanel.updateSelectedColor(((ColorPanel) e.getSource()).getColor());
+			}
+		});
+	}
+	
 	class CustomMouseAdapter extends MouseAdapter {
 
 		@Override
