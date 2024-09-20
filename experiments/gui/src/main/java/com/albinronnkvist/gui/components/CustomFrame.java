@@ -9,10 +9,10 @@ public class CustomFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500, 500);
         this.setTitle("Albin's Program");
-        this.getContentPane().setBackground(Color.YELLOW);
+        this.getContentPane().setBackground(Color.lightGray);
+        
+        this.setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
+        
         this.setVisible(true);
-
-        var image = new ImageIcon("resources/logo.png");
-        this.setIconImage(image.getImage());
     }
 }
