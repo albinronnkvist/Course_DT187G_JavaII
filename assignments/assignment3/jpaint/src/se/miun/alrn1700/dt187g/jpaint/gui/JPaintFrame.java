@@ -30,9 +30,9 @@ public class JPaintFrame extends JFrame {
 		 * 13. Avslutningsvis, lägg till topPanel, drawingPanel och statusBarPanel till 
 		 * Container c.
 		 */
-		container.add(topPanel, BorderLayout.NORTH);
+		container.add(topPanel, BorderLayout.PAGE_START);
 		container.add(drawingPanel, BorderLayout.CENTER);
-		container.add(statusBarPanel, BorderLayout.SOUTH);
+		container.add(statusBarPanel, BorderLayout.PAGE_END);
 	}
 
 	private void setupFrame() {
