@@ -21,8 +21,8 @@ public class JPaintFrame extends JFrame {
 
 	private void init() {
 
-		setupBasics();
-		setupTopPanel();
+		setupFrame();
+		setupToolbarPanel();
 		setupDrawingPanel();
 		setupStatusBarPanel();
 		
@@ -35,7 +35,7 @@ public class JPaintFrame extends JFrame {
 		container.add(statusBarPanel, BorderLayout.SOUTH);
 	}
 
-	private void setupBasics() {
+	private void setupFrame() {
 		// 1. Sätt storleken på JFrame till vad ni nu känner för.
 		this.setSize(500, 500);
 
@@ -68,7 +68,7 @@ public class JPaintFrame extends JFrame {
 		container.setLayout(new BorderLayout());
 	}
 
-	private void setupTopPanel() {
+	private void setupToolbarPanel() {
 		/*
 		 * 6. Följande kod skapar en JPanel där vi sätter en önskad storlek på höjden
 		 * genom att skicka ett Dimension-objekt till prefferedSize (Dimension(width,
