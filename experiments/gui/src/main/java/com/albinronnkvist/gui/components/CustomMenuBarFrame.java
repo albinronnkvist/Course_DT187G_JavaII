@@ -3,6 +3,7 @@ package com.albinronnkvist.gui.components;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 public class CustomMenuBarFrame extends CustomFrame implements ActionListener {
     private JMenuBar menuBar;
@@ -26,9 +27,10 @@ public class CustomMenuBarFrame extends CustomFrame implements ActionListener {
         fileMenu.add(saveItem);
         fileMenu.addSeparator();
         fileMenu.add(exitItem);
+        fileMenu.setMnemonic(KeyEvent.VK_F); // Open file menu with Alt+F
 
         menuBar.add(fileMenu);
-        
+
         this.setJMenuBar(menuBar);
         this.setSize(400, 300);
         this.setVisible(true);
