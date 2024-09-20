@@ -8,8 +8,10 @@ import java.util.Arrays;
 
 public class JPaintFrame extends JFrame {
 
-	private Container container = this.getContentPane();
 	private final String header = "JPaint";
+	private final String imgFolderName = "img/";
+
+	private Container container = this.getContentPane();
 	private JPanel topPanel;
 	private ColorPalettePanel colorPalettePanel;
 	private DrawingPanel drawingPanel;
@@ -46,13 +48,13 @@ public class JPaintFrame extends JFrame {
 		 * 3. Välj ikon för programmet. Ni kan skapa en mapp som heter "img" i
 		 * root-katalogen och hänvisa till den genom "img/filenameOfYourIcon.png".
 		 */
-		var icon = new ImageIcon("img/icon.png");
+		var icon = new ImageIcon(imgFolderName + "icon.png");
 		if (icon.getImageLoadStatus() == MediaTracker.COMPLETE) {
 			System.out.println("Icon loaded successfully");
+			this.setIconImage(icon.getImage());
 		} else {
-			System.out.println("Icon failed to load");
+			System.err.println("Icon failed to load");
 		}
-		this.setIconImage(icon.getImage());
 
 		/*
 		 * 4. Initialisera strängen "header" med något värde ("JPaint" exempelvis), och
