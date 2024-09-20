@@ -26,7 +26,7 @@ public class ColorPalettePanel extends JPanel {
 	 * För denna constructor så ska listan colorPanels initialiseras.
 	 */
 	public ColorPalettePanel() {
-		// TODO
+		this(new ArrayList<ColorPanel>());
 	}
 	
 	/*
@@ -39,7 +39,12 @@ public class ColorPalettePanel extends JPanel {
 	 * denna klass (så att de blir synliga).
 	 */
 	public ColorPalettePanel(ArrayList<ColorPanel> colorPanels) {
-		// TODO
+		this.colorPanels = colorPanels;
+		this.setLayout(new GridLayout());
+
+		for (var colorPanel : colorPanels) {
+			this.add(colorPanel);
+		}
 	}
 
 	/*
@@ -52,8 +57,9 @@ public class ColorPalettePanel extends JPanel {
 	 * till denna klass genom att anropa add-metoden för denna klass 
 	 * (så att de blir synliga).
 	 */
-	public void addColorPanel(ColorPanel cp) {
-		// TODO
+	public void addColorPanel(ColorPanel colorPanel) {
+		this.colorPanels.add(colorPanel);
+		this.add(colorPanel);
 	}
 
 	/*
@@ -65,7 +71,9 @@ public class ColorPalettePanel extends JPanel {
 	 * samtliga ColorPanel-objekt som finns i listan.
 	 */
 	public void setMouseListenerForColorPanels(MouseListener listener) {
-		// TODO
+		for (var colorPanel : colorPanels) {
+			colorPanel.addMouseListener(listener);
+		}
 	}
 
 }
