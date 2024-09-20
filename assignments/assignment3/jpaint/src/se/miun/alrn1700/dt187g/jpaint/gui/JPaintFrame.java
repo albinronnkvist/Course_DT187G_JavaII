@@ -88,8 +88,10 @@ public class JPaintFrame extends JFrame {
 		 * 9.3 Lägg till denna CustomMouseAdapter som MouseListener till drawingPanel
 		 * 9.4 Lägg även till CustomMouseAdapter som MouseMotionListener till drawingPanel
 		 */
-		// TODO
-		
+		drawingPanel = new DrawingPanel();
+		var customMouseAdapter = new CustomMouseAdapter();
+		drawingPanel.addMouseListener(customMouseAdapter);
+		drawingPanel.addMouseMotionListener(customMouseAdapter);
 
 		
 		/*
