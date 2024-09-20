@@ -171,20 +171,20 @@ public class JPaintFrame extends JFrame {
 		@Override
 		public void mouseDragged(MouseEvent e) {
 			if (((Component) e.getSource()).getMousePosition() != null) {
-				//  Uppdatera koordinater i statusBarPanel
+				statusBarPanel.updateCoordinates(e.getX(), e.getY());
 			} else {
-				// Nollställ koordinater i statusBarPanel
+				statusBarPanel.updateCoordinates(0, 0);
 			}
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			// Nollställ koordinater i statusBarPanel
+			statusBarPanel.updateCoordinates(0, 0);
 		}
 
 		@Override
 		public void mouseMoved(MouseEvent e) {
-			// Uppdatera koordinater i statusBarPanel
+			statusBarPanel.updateCoordinates(e.getX(), e.getY());
 		}
 	}
 
