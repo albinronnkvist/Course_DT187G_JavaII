@@ -122,7 +122,7 @@ public class JPaintFrame extends JFrame {
 		 */
 		topPanel.setLayout(new BorderLayout());
 		topPanel.add(colorPalettePanel, BorderLayout.CENTER);
-		topPanel.add(comboBox, BorderLayout.EAST);
+		topPanel.add(comboBox, BorderLayout.LINE_END);
 	}
 
 	private void setupDrawingPanel() {
