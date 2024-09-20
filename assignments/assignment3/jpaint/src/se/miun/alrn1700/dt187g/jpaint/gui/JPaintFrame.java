@@ -178,18 +178,22 @@ public class JPaintFrame extends JFrame {
 			if (((Component) e.getSource()).getMousePosition() != null) {
 				statusBarPanel.updateCoordinates(e.getX(), e.getY());
 			} else {
-				statusBarPanel.updateCoordinates(0, 0);
+				resetCoordinates();
 			}
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			statusBarPanel.updateCoordinates(0, 0);
+			resetCoordinates();
 		}
 
 		@Override
 		public void mouseMoved(MouseEvent e) {
 			statusBarPanel.updateCoordinates(e.getX(), e.getY());
+		}
+
+		private void resetCoordinates() {
+			statusBarPanel.updateCoordinates(0, 0);
 		}
 	}
 
