@@ -5,8 +5,8 @@ import java.awt.FlowLayout;
 import javax.swing.JPanel;
 import com.albinronnkvist.gui.components.CustomFrame;
 
-public class CustomFlowLayout extends CustomFrame {
-    public CustomFlowLayout() {
+public class CustomFlowLayoutFrame extends CustomFrame {
+    public CustomFlowLayoutFrame() {
         this.setLayout(new FlowLayout(FlowLayout.LEADING, 40, 40));
 
         var redPanel = createColoredPanel(Color.RED, 100, 100);
