@@ -67,7 +67,7 @@ public class JPaintFrame extends JFrame {
 		/*
 		 * 5. Sätt layout för denna klass till BorderLayout
 		 */
-		this.setLayout(new BorderLayout());
+		c.setLayout(new BorderLayout());
 	}
 
 	private void setupTopPanel() {
