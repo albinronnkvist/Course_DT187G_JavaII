@@ -13,15 +13,14 @@ public class ColorPanel extends JPanel {
 	 *  Color-objekt som skickas som argument.
 	 */
 	public ColorPanel(Color color) {
-		// TODO
+		this.setBackground(color);
 	}
 	
 	/*
 	 * Returnera bakgrunden för detta objekt.
 	 */
 	public Color getColor() {
-		// TODO
-		return null; 
+		return this.getBackground();
 	}
 	
 	/*
