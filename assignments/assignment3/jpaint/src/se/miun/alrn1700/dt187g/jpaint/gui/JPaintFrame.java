@@ -112,9 +112,7 @@ public class JPaintFrame extends JFrame {
 		 * Däremot så har vi här möjlighet att ange bredd. Sätt bredden till något
 		 * rimligt, exempelvis 100.
 		 */
-		final String RECTANGLE = "Rectangle";
-		final String CIRCLE = "Circle";
-		var shapes = new String[] { RECTANGLE, CIRCLE };
+		var shapes = new String[] { "Rectangle", "Circle" };
 		var comboBox = new JComboBox<String>(shapes);
 		comboBox.setPreferredSize(new Dimension(100, comboBox.getPreferredSize().height));
 		comboBox.setSelectedIndex(1);
