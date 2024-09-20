@@ -1,9 +1,9 @@
 package com.albinronnkvist.gui;
 
-import com.albinronnkvist.gui.components.CustomColorChooserFrame;
+import com.albinronnkvist.gui.components.listeners.CustomKeyListenerFrame;
 
 public class Main {
     public static void main(String[] args) {
-        var frame = new CustomColorChooserFrame();
+        var frame = new CustomKeyListenerFrame();
     }
 }
