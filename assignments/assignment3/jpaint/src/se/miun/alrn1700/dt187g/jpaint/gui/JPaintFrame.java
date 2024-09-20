@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 
 public class JPaintFrame extends JFrame {
 
-	private Container c = this.getContentPane();
+	private Container container = this.getContentPane();
 	private String header;
 	private JPanel topPanel;
 	private ColorPalettePanel colorPalettePanel;
@@ -38,9 +38,9 @@ public class JPaintFrame extends JFrame {
 		 * 13. Avslutningsvis, lägg till topPanel, drawingPanel och statusBarPanel till 
 		 * Container c.
 		 */
-		c.add(topPanel, BorderLayout.NORTH);
-		c.add(drawingPanel, BorderLayout.CENTER);
-		c.add(statusBarPanel, BorderLayout.SOUTH);
+		container.add(topPanel, BorderLayout.NORTH);
+		container.add(drawingPanel, BorderLayout.CENTER);
+		container.add(statusBarPanel, BorderLayout.SOUTH);
 	}
 
 	private void setupBasics() {
@@ -67,7 +67,7 @@ public class JPaintFrame extends JFrame {
 		/*
 		 * 5. Sätt layout för denna klass till BorderLayout
 		 */
-		c.setLayout(new BorderLayout());
+		container.setLayout(new BorderLayout());
 	}
 
 	private void setupTopPanel() {
@@ -126,7 +126,7 @@ public class JPaintFrame extends JFrame {
 		 * 12.3 "adda" din JComboBox med lämplig constraint (dvs BorderLayout.LÄMPLIG_CONSTRAINT)
 		 */
 		topPanel.setLayout(new BorderLayout());
-		topPanel.add(colorPalettePanel, BorderLayout.WEST);
+		topPanel.add(colorPalettePanel, BorderLayout.CENTER);
 		topPanel.add(comboBox, BorderLayout.EAST);
 	}
 
