@@ -15,6 +15,7 @@ public class DrawingPanel extends JPanel {
 	
 	public DrawingPanel(Color backgroundColor) {
 		this.setBackground(backgroundColor);
+		this.drawing = new Drawing();
 	}
 	
 	public Drawing getDrawing() {

@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import se.miun.alrn1700.dt187g.jpaint.Drawing;
-import se.miun.alrn1700.dt187g.jpaint.DrawingException;
 
 public class MenuManager {
     private JPaintFrame frame;
