@@ -2,7 +2,11 @@ package se.miun.alrn1700.dt187g.jpaint.gui;
 
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+
+import se.miun.alrn1700.dt187g.jpaint.Drawing;
 
 public class MenuManager {
     private JPaintFrame frame;
@@ -24,11 +28,11 @@ public class MenuManager {
     private void createMenu() {
         createFileMenu();
         createEditMenu();
-        createFilterMenu(); // Empty for now
+        createFilterMenu(); // TODO for assignment 6
     }
 
     private void createFileMenu() {
-		String sFile = "File";
+		final String sFile = "File";
 		menu.addJMenu(sFile);
 		menu.getJMenu(0).setMnemonic(KeyEvent.VK_F);
 
@@ -46,8 +50,8 @@ public class MenuManager {
 	}
 
     private void createEditMenu() {
-		String sEdit = "Edit";
-		String sDrawing = "Drawing";
+		final String sEdit = "Edit";
+		final String sDrawing = "Drawing";
 		menu.addJMenu(sEdit);
 		menu.addSubJMenu(sEdit, sDrawing);
 		menu.getJMenu(1).setMnemonic(KeyEvent.VK_E);
@@ -85,21 +89,43 @@ public class MenuManager {
      * 
      */
     
+
     private ActionListener createNewDrawingAction() {
 		return al -> {
-			// TODO for assignment 4
+			String name = JOptionPane.showInputDialog(frame, "Enter the name of the new drawing:", "New Drawing", JOptionPane.PLAIN_MESSAGE);
+			String author = JOptionPane.showInputDialog(frame, "Enter the author of the new drawing:", "New Drawing", JOptionPane.PLAIN_MESSAGE);
+        
+            if (!isNullOrBlank(name) && !isNullOrBlank(author)) {
+				drawingPanel.setDrawing(new Drawing(name, author));
+				frame.setDrawingTitle(name, author);
+				frame.updateHeader();
+            }
 		};
 	}
 
     private ActionListener createChangeNameAction() {
 		return al -> {
-			// TODO for assignment 4
+			String name = JOptionPane.showInputDialog(frame, "Enter the new name:", "Change Name", JOptionPane.PLAIN_MESSAGE);
+
+			if(!isNullOrBlank(name)) {
+				var drawing = drawingPanel.getDrawing();
+				drawing.setName(name);
+				frame.setDrawingTitle(drawing.getName(), drawing.getAuthor());
+				frame.updateHeader();
+			}
 		};
 	}
 
 	private ActionListener createChangeAuthorAction() {
 		return al -> {
-			// TODO for assignment 4
+			String author = JOptionPane.showInputDialog(frame, "Enter the new author:", "Change author", JOptionPane.PLAIN_MESSAGE);
+
+			if(!isNullOrBlank(author)) {
+				var drawing = drawingPanel.getDrawing();
+				drawing.setAuthor(author);
+				frame.setDrawingTitle(drawing.getName(), drawing.getAuthor());
+				frame.updateHeader();
+			}
 		};
 	}
 
@@ -127,6 +153,7 @@ public class MenuManager {
 		};
 	}
 
-
-    
+    private boolean isNullOrBlank(String str) {
+		return str == null || str.isBlank();
+	}
 }
