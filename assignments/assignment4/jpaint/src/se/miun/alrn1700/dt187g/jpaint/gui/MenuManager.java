@@ -77,19 +77,6 @@ public class MenuManager {
 		// TODO for assignment 6
 	}
     
-    /*
-     * Flera av metoderna nedan kommer anropa JOptionPane.showInputDialog(...).
-     * Denna metod returnerar en String. Tänk på att om användaren trycker på
-     * "Cancel" så kommer null att returneras. När en användare trycker på "Cancel"
-     * så ska givetvis ingenting alls hända; inget felmeddelande till användaren,
-     * inget ändring av det grafiska gränssnittets tillstånd (en teckning ska
-     * inte plötsligt få namnet "null"). Jag har sett många inlämningar där
-     * "Cancel" har hanterats på tämligen oväntade sätt. Så håll det i åtanke,
-     * att Cancel/Avbryt innebär just den saken.
-     * 
-     */
-    
-
     private ActionListener createNewDrawingAction() {
 		return al -> {
 			try {

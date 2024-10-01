@@ -38,7 +38,7 @@ public class Menu extends JMenuBar {
             return;
         }
 
-        JMenu parentMenu = (JMenu) component;
+        var parentMenu = (JMenu) component;
         parentMenu.add(new JMenu(subMenuName));
     }
 
@@ -46,8 +46,9 @@ public class Menu extends JMenuBar {
         return this.getMenu(index);
     }
 
+    // (╯°□°）╯︵ ┻━┻ 
     private JComponent getComponentByName(String name) {
-        if (name.isBlank()) {
+        if (name == null || name.isBlank()) {
             return null;
         }
 
@@ -75,6 +76,7 @@ public class Menu extends JMenuBar {
 
         return null;
     }
+    // ¯\_(ツ)_/¯
 
     private void addItemToParentMenu(String parentName, JMenuItem menuItem) {
         var component = getComponentByName(parentName);
