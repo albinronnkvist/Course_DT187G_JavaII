@@ -49,12 +49,7 @@ public class JPaintFrame extends JFrame {
 		 * root-katalogen och hänvisa till den genom "img/filenameOfYourIcon.png".
 		 */
 		var icon = new ImageIcon(imgFolderName + "icon.png");
-		if (icon.getImageLoadStatus() == MediaTracker.COMPLETE) {
-			System.out.println("Icon loaded successfully");
-			this.setIconImage(icon.getImage());
-		} else {
-			System.err.println("Icon failed to load");
-		}
+		this.setIconImage(icon.getImage());
 
 		/*
 		 * 4. Initialisera strängen "header" med något värde ("JPaint" exempelvis), och
