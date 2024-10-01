@@ -104,8 +104,7 @@ public class MenuManager {
 				}
 
 				drawingPanel.setDrawing(new Drawing(name, author));
-				frame.setDrawingTitle(name, author);
-				frame.updateHeader();	
+				frame.setDrawingTitle(name, author);	
 			}
 			catch (Exception e) {
 				JOptionPane.showMessageDialog(frame, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -124,7 +123,6 @@ public class MenuManager {
 				var drawing = drawingPanel.getDrawing();
 				drawing.setName(name);
 				frame.setDrawingTitle(name, drawing.getAuthor());
-				frame.updateHeader();
 			}
 			catch (Exception e) {
 				JOptionPane.showMessageDialog(frame, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -143,7 +141,6 @@ public class MenuManager {
 				var drawing = drawingPanel.getDrawing();
 				drawing.setAuthor(author);
 				frame.setDrawingTitle(drawing.getName(), author);
-				frame.updateHeader();
 			}
 			catch (Exception e) {
 				JOptionPane.showMessageDialog(frame, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
