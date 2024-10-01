@@ -20,7 +20,11 @@ public class Drawing implements Drawable {
     public Drawing() {
     }
 
-    public Drawing(String name, String author) {
+    public Drawing(String name, String author) throws DrawingException {
+        if (isNullOrBlank(name) || isNullOrBlank(author)) {
+            throw new DrawingException("Drawing name and author can't be null or empty");
+        }
+
         this.name = name;
         this.author = author;
     }
@@ -29,7 +33,15 @@ public class Drawing implements Drawable {
         return this.name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws DrawingException {
+        if (name == null) {
+            throw new DrawingException("Drawing name can't be null");
+        }
+
+        if(name.isBlank()) {
+            throw new DrawingException("Drawing name can't be empty");
+        }
+
         this.name = name;
     }
 
@@ -37,7 +49,15 @@ public class Drawing implements Drawable {
         return this.author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(String author) throws DrawingException {
+        if (author == null) {
+            throw new DrawingException("Drawing author can't be null");
+        }
+
+        if(author.isBlank()) {
+            throw new DrawingException("Drawing author can't be empty");
+        }
+
         this.author = author;
     }
 
@@ -100,4 +120,8 @@ public class Drawing implements Drawable {
 
         return drawingInfo.toString();
     }
+
+    private boolean isNullOrBlank(String str) {
+		return str == null || str.isBlank();
+	}
 }
