@@ -93,39 +93,47 @@ public class MenuManager {
     private ActionListener createNewDrawingAction() {
 		return al -> {
 			String name = JOptionPane.showInputDialog(frame, "Enter the name of the new drawing:", "New Drawing", JOptionPane.PLAIN_MESSAGE);
+			if(name == null) {
+				return;
+			}
+
 			String author = JOptionPane.showInputDialog(frame, "Enter the author of the new drawing:", "New Drawing", JOptionPane.PLAIN_MESSAGE);
+			if(author == null) {
+				return;
+			}
         
-            if (!isNullOrBlank(name) && !isNullOrBlank(author)) {
-				drawingPanel.setDrawing(new Drawing(name, author));
-				frame.setDrawingTitle(name, author);
-				frame.updateHeader();
-            }
+			drawingPanel.setDrawing(new Drawing(name, author));
+			var drawing = drawingPanel.getDrawing();
+			frame.setDrawingTitle(drawing.getName(), drawing.getAuthor());
+			frame.updateHeader();
 		};
 	}
 
     private ActionListener createChangeNameAction() {
 		return al -> {
 			String name = JOptionPane.showInputDialog(frame, "Enter the new name:", "Change Name", JOptionPane.PLAIN_MESSAGE);
-
-			if(!isNullOrBlank(name)) {
-				var drawing = drawingPanel.getDrawing();
-				drawing.setName(name);
-				frame.setDrawingTitle(drawing.getName(), drawing.getAuthor());
-				frame.updateHeader();
+			if (name == null) {
+				return;
 			}
+
+			var drawing = drawingPanel.getDrawing();
+			drawing.setName(name);
+			frame.setDrawingTitle(drawing.getName(), drawing.getAuthor());
+			frame.updateHeader();
 		};
 	}
 
 	private ActionListener createChangeAuthorAction() {
 		return al -> {
 			String author = JOptionPane.showInputDialog(frame, "Enter the new author:", "Change author", JOptionPane.PLAIN_MESSAGE);
-
-			if(!isNullOrBlank(author)) {
-				var drawing = drawingPanel.getDrawing();
-				drawing.setAuthor(author);
-				frame.setDrawingTitle(drawing.getName(), drawing.getAuthor());
-				frame.updateHeader();
+			if (author == null) {
+				return;
 			}
+
+			var drawing = drawingPanel.getDrawing();
+			drawing.setAuthor(author);
+			frame.setDrawingTitle(drawing.getName(), drawing.getAuthor());
+			frame.updateHeader();
 		};
 	}
 
@@ -151,9 +159,5 @@ public class MenuManager {
 		return al -> {
 			// TODO for assignment 6
 		};
-	}
-
-    private boolean isNullOrBlank(String str) {
-		return str == null || str.isBlank();
 	}
 }
