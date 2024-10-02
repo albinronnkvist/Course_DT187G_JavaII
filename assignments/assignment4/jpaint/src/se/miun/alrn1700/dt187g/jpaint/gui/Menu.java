@@ -76,11 +76,11 @@ public class Menu extends JMenuBar {
 
         return null;
     }
-    // ¯\_(ツ)_/¯
 
     private void addItemToParentMenu(String parentName, JMenuItem menuItem) {
         var component = getComponentByName(parentName);
         if (!(component instanceof JMenu)) {
+            // I could throw here but the description says I should do nothing?
             System.err.println("Could not get parent menu '" + parentName + "'. Parent was null or not a JMenu.");
             return;
         }
@@ -107,7 +107,7 @@ public class Menu extends JMenuBar {
         }
     
         public JMenuItem build() {    
-            return menuItem;
+            return this.menuItem;
         }
     }
 }

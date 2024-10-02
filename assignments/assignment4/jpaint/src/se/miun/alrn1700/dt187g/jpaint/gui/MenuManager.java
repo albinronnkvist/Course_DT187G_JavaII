@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import se.miun.alrn1700.dt187g.jpaint.Drawing;
+import se.miun.alrn1700.dt187g.jpaint.DrawingException;
 
 public class MenuManager {
     private JPaintFrame frame;
@@ -45,7 +46,12 @@ public class MenuManager {
 		menu.addJMenuItem(sFile, "Info", showInfoAction());
 
 		menu.getJMenu(0).addSeparator();
-		menu.addJMenuItem(sFile, "Exit", al -> System.exit(0));
+		menu.addJMenuItem(sFile, "Exit", al -> {
+			int confirm = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
+			if (confirm == JOptionPane.YES_OPTION) {
+				System.exit(0);
+			}
+		});
 
 	}
 
@@ -80,12 +86,12 @@ public class MenuManager {
     private ActionListener createNewDrawingAction() {
 		return al -> {
 			try {
-				String name = JOptionPane.showInputDialog(frame, "Enter the name of the new drawing:", "New Drawing", JOptionPane.PLAIN_MESSAGE);
+				String name = promptUserInput("Enter the name of the new drawing:", "New Drawing");
 				if(name == null) {
 					return;
 				}
 
-				String author = JOptionPane.showInputDialog(frame, "Enter the author of the new drawing:", "New Drawing", JOptionPane.PLAIN_MESSAGE);
+				String author = promptUserInput("Enter the author of the new drawing:", "New Drawing");
 				if(author == null) {
 					return;
 				}
@@ -94,8 +100,11 @@ public class MenuManager {
 				frame.setDrawingTitle(name, author);	
 				frame.updateHeader();
 			}
-			catch (Exception e) {
-				JOptionPane.showMessageDialog(frame, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			catch (DrawingException e) {
+				showErrorDialog(e.getMessage());
+			}
+			catch(Exception e){
+				System.err.println(e.getMessage());
 			}
 		};
 	}
@@ -103,7 +112,7 @@ public class MenuManager {
     private ActionListener createChangeNameAction() {
 		return al -> {
 			try {
-				String name = JOptionPane.showInputDialog(frame, "Enter the new name:", "Change Name", JOptionPane.PLAIN_MESSAGE);
+				String name = promptUserInput("Enter the new name:", "Change Name");
 				if (name == null) {
 					return;
 				}
@@ -113,8 +122,8 @@ public class MenuManager {
 				frame.setDrawingTitle(name, drawing.getAuthor());
 				frame.updateHeader();
 			}
-			catch (Exception e) {
-				JOptionPane.showMessageDialog(frame, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			catch (DrawingException e) {
+				showErrorDialog(e.getMessage());
 			}
 		};
 	}
@@ -122,7 +131,7 @@ public class MenuManager {
 	private ActionListener createChangeAuthorAction() {
 		return al -> {
 			try {
-				String author = JOptionPane.showInputDialog(frame, "Enter the new author:", "Change author", JOptionPane.PLAIN_MESSAGE);
+				String author = promptUserInput("Enter the new author:", "Change author");
 				if (author == null) {
 					return;
 				}
@@ -132,8 +141,8 @@ public class MenuManager {
 				frame.setDrawingTitle(drawing.getName(), author);
 				frame.updateHeader();
 			}
-			catch (Exception e) {
-				JOptionPane.showMessageDialog(frame, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			catch (DrawingException e) {
+				showErrorDialog(e.getMessage());
 			}
 		};
 	}
@@ -160,5 +169,13 @@ public class MenuManager {
 		return al -> {
 			// TODO for assignment 6
 		};
+	}
+
+	private String promptUserInput(String message, String title) {
+		return JOptionPane.showInputDialog(frame, message, title, JOptionPane.PLAIN_MESSAGE);
+	}
+
+	private void showErrorDialog(String message) {
+		JOptionPane.showMessageDialog(frame, message, "Error", JOptionPane.ERROR_MESSAGE);
 	}
 }
