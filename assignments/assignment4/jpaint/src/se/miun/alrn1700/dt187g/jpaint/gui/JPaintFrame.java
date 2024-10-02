@@ -36,8 +36,6 @@ public class JPaintFrame extends JFrame {
 		} else {
 			drawingTitle = header;
 		}
-
-		updateHeader();
 	}
 
 	public String getDrawingTitle() {
