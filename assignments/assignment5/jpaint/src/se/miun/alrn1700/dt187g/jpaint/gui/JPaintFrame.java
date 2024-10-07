@@ -95,6 +95,7 @@ public class JPaintFrame extends JFrame {
 		var comboBox = new JComboBox<String>(shapes);
 		comboBox.setPreferredSize(new Dimension(100, comboBox.getPreferredSize().height));
 		comboBox.setSelectedIndex(0);
+		drawingPanel.setActiveShape(comboBox.getSelectedItem().toString());
 		comboBox.addActionListener(e -> drawingPanel.setActiveShape(comboBox.getSelectedItem().toString()));
 
 		topPanel.setLayout(new BorderLayout());
