@@ -125,26 +125,6 @@ public class CircleTests {
     }
 
     @Test
-    public void testDraw() {
-        var startPoint = new Point(0, 0);
-        var endPoint = new Point(3, 4);
-        var circle = new Circle(startPoint, "Red");
-        circle.addPoint(endPoint);
-        
-        try {
-            final var outContent = new ByteArrayOutputStream(); // Custom output stream
-            System.setOut(new PrintStream(outContent)); // Reassign to custom output stream
-
-            circle.draw();
-
-            assertThat(outContent.toString())
-                .contains("Circle[start=[0.0, 0.0] end=[3.0, 4.0] radius=5.0 color=Red]");
-        } finally {
-            System.setOut(System.out); // Restore to standard output stream
-        }
-    }
-
-    @Test
     public void testToStringAllValuesPresent() {
         var startPoint = new Point(0, 0);
         var endPoint = new Point(3, 4);

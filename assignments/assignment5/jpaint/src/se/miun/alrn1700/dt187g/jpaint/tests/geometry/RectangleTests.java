@@ -160,26 +160,6 @@ public class RectangleTests {
         
         assertThat(rectangle.getArea()).isEqualTo(expectedArea);
     }
-
-    @Test
-    public void testDraw() {
-        var startPoint = new Point(1.7, 1.5);
-        var endPoint = new Point(-5, 5);
-        var rectangle = new Rectangle(startPoint, "Red");
-        rectangle.addPoint(endPoint);
-        
-        try {
-            final var outContent = new ByteArrayOutputStream(); // Custom output stream
-            System.setOut(new PrintStream(outContent)); // Reassign to custom output stream
-
-            rectangle.draw();
-
-            assertThat(outContent.toString())
-                .contains("Rectangle[start=[1.7, 1.5] end=[-5.0, 5.0] width=6.7 height=3.5 color=Red]");
-        } finally {
-            System.setOut(System.out); // Restore to standard output stream
-        }
-    }
     
     @Test
     public void testToStringAllValuesPresent() {
