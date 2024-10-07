@@ -6,7 +6,10 @@ package se.miun.alrn1700.dt187g.jpaint.geometry;
 * @version 1.0
 */
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
 
 public class Circle extends Shape {
     private final double PI = 3.14159265;
@@ -52,13 +55,27 @@ public class Circle extends Shape {
 
     @Override
     public void draw() {
-        System.out.println("Drawing a " + this.toString());
+        throw new UnsupportedOperationException("Unimplemented method 'draw'");
     }
 
-    // Implement in another assignment
     @Override
     public void draw(Graphics g) {
-        throw new UnsupportedOperationException("Unimplemented method 'draw'");
+        Graphics2D g2 = (Graphics2D) g;
+        
+        g2.setColor(Color.decode(getColor()));
+
+        var startPoint = points.get(0);
+        double centerX = startPoint.getX();
+        double centerY = startPoint.getY();
+        double radius = getRadius();
+
+        double x = (centerX - radius);
+        double y = (centerY - radius);
+        double diameter = (2 * radius);
+
+        var circle = new Ellipse2D.Double(x, y, diameter, diameter);
+
+        g2.fill(circle);
     }
 
     @Override

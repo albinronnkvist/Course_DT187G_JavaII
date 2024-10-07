@@ -99,16 +99,14 @@ public class Drawing implements Drawable {
 
     @Override
     public void draw() {
-        System.out.println("A drawing by " + author + " called " + name);
-        for (var shape : shapes) {
-            System.out.println("Drawing a " + shape.toString());
-        }
+        throw new UnsupportedOperationException("Unimplemented method 'draw'");
     }
 
-    // Implement in another assignment
     @Override
     public void draw(Graphics g) {
-        throw new UnsupportedOperationException("Unimplemented method 'draw'");
+        for (var shape : shapes) {
+            shape.draw(g);
+        }
     }
 
     @Override

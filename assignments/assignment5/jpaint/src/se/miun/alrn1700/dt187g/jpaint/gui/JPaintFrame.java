@@ -114,11 +114,12 @@ public class JPaintFrame extends JFrame {
 	}
 	
 	private class CustomMouseAdapter extends MouseAdapter {
-
 		@Override
 		public void mouseDragged(MouseEvent e) {
 			if (((Component) e.getSource()).getMousePosition() != null) {
 				statusBarPanel.updateCoordinates(e.getX(), e.getY());
+				drawingPanel.setEndPoint(e.getX(), e.getY());
+				drawingPanel.repaint();
 			} else {
 				resetCoordinates();
 			}
@@ -132,6 +133,24 @@ public class JPaintFrame extends JFrame {
 		@Override
 		public void mouseMoved(MouseEvent e) {
 			statusBarPanel.updateCoordinates(e.getX(), e.getY());
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			statusBarPanel.updateCoordinates(e.getX(), e.getY());
+			drawingPanel.setDrawIsActive(true);
+			drawingPanel.setDrawColor(Color.BLUE); // TODO: this will be replaced by StatusBarPanel
+			drawingPanel.setActiveShape("Circle"); //  TODO: create action listener for this
+			drawingPanel.setStartPoint(e.getX(), e.getY());
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			statusBarPanel.updateCoordinates(e.getX(), e.getY());
+			drawingPanel.setEndPoint(e.getX(), e.getY());
+			drawingPanel.addShape();
+			drawingPanel.setDrawIsActive(false);
+			drawingPanel.repaint();
 		}
 
 		private void resetCoordinates() {

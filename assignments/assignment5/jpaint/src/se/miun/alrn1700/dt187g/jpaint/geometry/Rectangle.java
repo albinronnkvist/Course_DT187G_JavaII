@@ -6,7 +6,10 @@ package se.miun.alrn1700.dt187g.jpaint.geometry;
 * @version 1.0
 */
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 public class Rectangle extends Shape {
 
@@ -60,13 +63,25 @@ public class Rectangle extends Shape {
 
     @Override
     public void draw() {
-        System.out.println("Drawing a " + this.toString());
+        throw new UnsupportedOperationException("Unimplemented method 'draw'");
     }
 
-    // Implement in another assignment
     @Override
     public void draw(Graphics g) {
-        throw new UnsupportedOperationException("Unimplemented method 'draw'");
+        Graphics2D g2 = (Graphics2D) g;
+
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setColor(Color.decode(getColor()));
+
+        var startPoint = points.get(0);
+        var endPoint = points.get(1);
+        double x = Math.min(startPoint.getX(), endPoint.getX());
+        double y = Math.min(startPoint.getY(), endPoint.getY());
+        double width = getWidth();
+        double height = getHeight();
+
+        var rectangle = new java.awt.Rectangle.Double(x, y, width, height);
+        g2.fill(rectangle);
     }
 
     @Override
