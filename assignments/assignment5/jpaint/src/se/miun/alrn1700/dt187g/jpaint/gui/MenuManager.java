@@ -169,9 +169,9 @@ public class MenuManager {
 			} else if (!isNullOrBlank(name)) {
 				title = name;
 			} else if (!isNullOrBlank(author)) {
-				title = "[Untitled drawing] by " + author;
+				title = "[Unnamed drawing] by " + author;
 			} else {
-				title = "[Untitled drawing]";
+				title = "[Unnamed drawing]";
 			}
 
 			var message = title + "\n" +
