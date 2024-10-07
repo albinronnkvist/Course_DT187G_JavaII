@@ -44,8 +44,8 @@ public class JPaintFrame extends JFrame {
 
 	private void init() {
 		setupFrame();
-		setupToolbarPanel();
 		setupDrawingPanel();
+		setupToolbarPanel();
 		setupStatusBarPanel();
 		
 		container.add(topPanel, BorderLayout.PAGE_START);
@@ -69,6 +69,13 @@ public class JPaintFrame extends JFrame {
 		container.setLayout(new BorderLayout());
 	}
 
+	private void setupDrawingPanel() {
+		drawingPanel = new DrawingPanel();
+		var customMouseAdapter = new CustomMouseAdapter();
+		drawingPanel.addMouseListener(customMouseAdapter);
+		drawingPanel.addMouseMotionListener(customMouseAdapter);
+	}
+
 	private void setupToolbarPanel() {
 		topPanel = new JPanel();
 		topPanel.setPreferredSize(new Dimension(0, 50));
@@ -87,18 +94,12 @@ public class JPaintFrame extends JFrame {
 		var shapes = new String[] { "Rectangle", "Circle" };
 		var comboBox = new JComboBox<String>(shapes);
 		comboBox.setPreferredSize(new Dimension(100, comboBox.getPreferredSize().height));
-		comboBox.setSelectedIndex(1);
+		comboBox.setSelectedIndex(0);
+		comboBox.addActionListener(e -> drawingPanel.setActiveShape(comboBox.getSelectedItem().toString()));
 
 		topPanel.setLayout(new BorderLayout());
 		topPanel.add(colorPalettePanel, BorderLayout.CENTER);
 		topPanel.add(comboBox, BorderLayout.LINE_END);
-	}
-
-	private void setupDrawingPanel() {
-		drawingPanel = new DrawingPanel();
-		var customMouseAdapter = new CustomMouseAdapter();
-		drawingPanel.addMouseListener(customMouseAdapter);
-		drawingPanel.addMouseMotionListener(customMouseAdapter);
 	}
 
 	private void setupStatusBarPanel() {
@@ -140,7 +141,6 @@ public class JPaintFrame extends JFrame {
 			statusBarPanel.updateCoordinates(e.getX(), e.getY());
 			drawingPanel.setDrawIsActive(true);
 			drawingPanel.setDrawColor(Color.BLUE); // TODO: this will be replaced by StatusBarPanel
-			drawingPanel.setActiveShape("Circle"); //  TODO: create action listener for this
 			drawingPanel.setStartPoint(e.getX(), e.getY());
 		}
 
