@@ -79,6 +79,38 @@ public class DrawingTests {
     }
 
     @Test
+    public void testRemoveShape() throws DrawingException {
+        var drawing = new Drawing("My Drawing", "Author Name");
+        var shape = new Circle(new Point(1, 1), "#FFFFFF");
+        drawing.addShape(shape);
+
+        drawing.removeShape(0);
+
+        assertThat(drawing.getSize()).isEqualTo(0);
+    }
+
+    @Test
+    public void testRemoveShape_InvalidIndex_IgnoresRemovalAttempt() throws DrawingException {
+        var drawing = new Drawing("My Drawing", "Author Name");
+        var shape = new Circle(new Point(1, 1), "#FFFFFF");
+        drawing.addShape(shape);
+
+        drawing.removeShape(-1);
+        drawing.removeShape(3);
+
+        assertThat(drawing.getSize()).isEqualTo(1);
+    }
+
+    @Test
+    public void testRemoveShape_EmptyList() throws DrawingException {
+        var drawing = new Drawing("My Drawing", "Author Name");
+
+        drawing.removeShape(0);
+
+        assertThat(drawing.getSize()).isEqualTo(0);
+    }
+
+    @Test
     public void testGetSizeWithoutShapes() throws DrawingException {
         var drawing = new Drawing("My Drawing", "Author Name");
 

@@ -68,6 +68,13 @@ public class Drawing implements Drawable {
         }
     }
 
+    public void removeShape(int index) {
+        if (index >= 0 && index < shapes.size()) {
+            shapes.remove(index);
+        }
+    }
+
+
     public int getSize() {
         return this.shapes.size();
     }
