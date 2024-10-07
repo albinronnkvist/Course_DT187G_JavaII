@@ -1,9 +1,9 @@
 package com.albinronnkvist.gui;
 
-import com.albinronnkvist.gui.components.CustomDragAndDropFrame;
+import com.albinronnkvist.gui.graphics.GraphicsFrame;
 
 public class Main {
     public static void main(String[] args) {
-        var frame = new CustomDragAndDropFrame();
+        var frame = new GraphicsFrame();
     }
 }
