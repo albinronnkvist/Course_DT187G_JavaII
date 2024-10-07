@@ -148,8 +148,11 @@ public class MenuManager {
 	}
 
 	private ActionListener createUndoAction() {
-		// TODO:
 		return al -> {
+			var drawing = drawingPanel.getDrawing();
+			drawing.removeShape(drawing.getSize() - 1);
+
+			drawingPanel.repaint();
 		};
 	}
 	
