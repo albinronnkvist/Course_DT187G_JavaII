@@ -148,14 +148,38 @@ public class MenuManager {
 	}
 
 	private ActionListener createUndoAction() {
+		// TODO:
 		return al -> {
-			// TODO for assignment 5
 		};
 	}
 	
 	private ActionListener showInfoAction() {
 		return al -> {
-			// TODO for assignment 5
+			var drawing = drawingPanel.getDrawing();
+			if(drawing == null) {
+				JOptionPane.showMessageDialog(frame, "No drawing selected", "Info", JOptionPane.INFORMATION_MESSAGE);
+				return;
+			}
+
+			var name = drawing.getName();
+			var author = drawing.getAuthor();
+			String title;
+			if (!isNullOrBlank(name) && !isNullOrBlank(author)) {
+				title = name + " by " + author;
+			} else if (!isNullOrBlank(name)) {
+				title = name;
+			} else if (!isNullOrBlank(author)) {
+				title = "[Untitled drawing] by " + author;
+			} else {
+				title = "[Untitled drawing]";
+			}
+
+			var message = title + "\n" +
+					"Number of Shapes: " + drawing.getSize() + "\n" +
+					"Total Area: " + drawing.getTotalArea() + "\n" +
+					"Total circumference: " + drawing.getTotalCircumference();
+
+			JOptionPane.showMessageDialog(frame, message, "Info", JOptionPane.INFORMATION_MESSAGE);
 		};
 	}
 
@@ -177,5 +201,9 @@ public class MenuManager {
 
 	private void showErrorDialog(String message) {
 		JOptionPane.showMessageDialog(frame, message, "Error", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private boolean isNullOrBlank(String str) {
+		return str == null || str.isBlank();
 	}
 }
