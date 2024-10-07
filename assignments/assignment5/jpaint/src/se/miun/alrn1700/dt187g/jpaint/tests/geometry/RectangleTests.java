@@ -9,9 +9,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import se.miun.alrn1700.dt187g.jpaint.geometry.Point;
 import se.miun.alrn1700.dt187g.jpaint.geometry.Rectangle;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import static org.assertj.core.api.Assertions.*;
 
 
