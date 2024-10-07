@@ -4,10 +4,6 @@ import javax.swing.JPanel;
 import java.awt.*;
 import javax.swing.ImageIcon;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 public class GraphicsPanel extends JPanel {
     Image image;
@@ -18,7 +14,7 @@ public class GraphicsPanel extends JPanel {
     }
 
     public void paint(Graphics g) {
-        colorGradientExamples(g);
+        archExamples(g);
     }
 
     private void colorGradientExamples(Graphics g) {
@@ -119,6 +115,11 @@ public class GraphicsPanel extends JPanel {
 
         g2d.setColor(Color.RED);
         g2d.drawArc(10, 10, 100, 100, 0, 180);
+
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g2d.setColor(Color.RED);
+        g2d.drawArc(50, 50, 100, 100, 0, 180);
 
         g2d.setColor(Color.BLUE);
         g2d.fillArc(110, 10, 100, 100, 0, 90);
