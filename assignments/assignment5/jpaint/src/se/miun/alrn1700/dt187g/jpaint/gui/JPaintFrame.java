@@ -3,6 +3,9 @@ package se.miun.alrn1700.dt187g.jpaint.gui;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import se.miun.alrn1700.dt187g.jpaint.OnChangeListener;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -113,6 +116,13 @@ public class JPaintFrame extends JFrame {
 				statusBarPanel.updateSelectedColor(((ColorPanel) e.getSource()).getColor());
 			}
 		});
+
+		statusBarPanel.setOnChangeListener(new OnChangeListener<StatusBarPanel>() {
+			@Override
+			public void onChange(StatusBarPanel currentStatusBarPanelState) {
+				drawingPanel.setDrawColor(currentStatusBarPanelState.getSelectedColor());
+			}
+		});
 	}
 	
 	private class CustomMouseAdapter extends MouseAdapter {
@@ -141,7 +151,6 @@ public class JPaintFrame extends JFrame {
 		public void mousePressed(MouseEvent e) {
 			statusBarPanel.updateCoordinates(e.getX(), e.getY());
 			drawingPanel.setDrawIsActive(true);
-			drawingPanel.setDrawColor(Color.BLUE); // TODO: this will be replaced by StatusBarPanel
 			drawingPanel.setStartPoint(e.getX(), e.getY());
 		}
 
