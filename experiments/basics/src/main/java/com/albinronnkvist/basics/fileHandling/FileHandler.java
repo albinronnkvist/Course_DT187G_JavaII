@@ -4,8 +4,13 @@ import java.io.*;
 import java.util.Scanner;
 
 public class FileHandler {
+    private final String baseFolder = "target/generated-files" + File.separator;
+
     public void CreateFileWithBufferedWriter(String filename) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename)))
+        var file = new File(baseFolder + filename);
+        file.getParentFile().mkdirs();
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file)))
         {
             writer.write("Hello, World!");
             writer.newLine();
@@ -18,7 +23,10 @@ public class FileHandler {
     }
 
     public void CreateFileWithPrintWriter(String filename) {
-        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(filename))))
+        var file = new File(baseFolder + filename);
+        file.getParentFile().mkdirs();
+        
+        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(file))))
         {
             writer.println("Hello, World!");
             writer.println("This is the second line.");
@@ -30,7 +38,13 @@ public class FileHandler {
     }
 
     public void ReadFileLines(String filename) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename)))
+        var file = new File(baseFolder + filename);
+        if(!file.exists() || !file.isFile()) {
+            System.err.println("File does not exist.");
+            return;
+        }
+        
+        try (BufferedReader reader = new BufferedReader(new FileReader(file)))
         {
             var line = reader.readLine();
             while (line != null) {
@@ -45,7 +59,13 @@ public class FileHandler {
     }
 
     public void ReadFileWords(String filename) {
-        try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(filename))))
+        var file = new File(baseFolder + filename);
+        if(!file.exists() || !file.isFile()) {
+            System.err.println("File does not exist.");
+            return;
+        }
+
+        try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(file))))
         {
             while (scanner.hasNext()) {
                 System.out.println(scanner.next());
