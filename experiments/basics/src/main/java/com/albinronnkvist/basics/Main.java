@@ -1,16 +1,10 @@
 package com.albinronnkvist.basics;
 
-import com.albinronnkvist.basics.fileHandling.NioFileHandler;
+import com.albinronnkvist.basics.other.StreamsApi;
 
 public class Main {
     public static void main(String[] args) {
-        NioFileHandler fileHandler = new NioFileHandler();
-        fileHandler.createFileWithBufferedWriter("test.txt");
-
-        fileHandler.readFileLines("test.txt");
-        fileHandler.readFileWords("test.txt");
-
-        //fileHandler.listFolderContent();
-        fileHandler.deleteFile("test.txt");
+        var streams = new StreamsApi();
+        streams.Peek();
     }
 }
