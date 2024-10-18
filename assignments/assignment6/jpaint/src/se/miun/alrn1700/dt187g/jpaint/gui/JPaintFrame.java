@@ -93,6 +93,7 @@ public class JPaintFrame extends JFrame {
 			new ColorPanel(new Color(238, 130, 238))
 		));
 		colorPalettePanel = new ColorPalettePanel(colorPanels);
+		drawingPanel.setDrawColor(colorPanels.get(0).getColor());
 		
 		var shapes = new String[] { "Rectangle", "Circle" };
 		var comboBox = new JComboBox<String>(shapes);
