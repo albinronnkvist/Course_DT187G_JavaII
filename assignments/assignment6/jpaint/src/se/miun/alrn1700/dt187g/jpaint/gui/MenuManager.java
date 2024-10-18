@@ -2,6 +2,7 @@ package se.miun.alrn1700.dt187g.jpaint.gui;
 
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.nio.file.Paths;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -209,6 +210,8 @@ public class MenuManager {
 				var fileChooser = new JFileChooser();
 				fileChooser.setAcceptAllFileFilterUsed(false);
 				fileChooser.setFileFilter(shapeFilter);
+				fileChooser.setCurrentDirectory(Paths.get("").toAbsolutePath().toFile());
+				fileChooser.setSelectedFile(new java.io.File((isNullOrBlank(drawing.getName()) ? "[Untitled]" : drawing.getName()) + ".shape"));
 	
 				var option = fileChooser.showSaveDialog(frame);
 				if (option == JFileChooser.CANCEL_OPTION) {
@@ -221,7 +224,7 @@ public class MenuManager {
 			}
 			catch (Exception e) {
 				showErrorDialog("Error saving file");
-				System.err.println(e.getMessage());
+				System.err.println("Error saving file" + e.getMessage());
 			}
 		};
 	}
