@@ -2,7 +2,6 @@ package se.miun.alrn1700.dt187g.jpaint;
 
 import java.io.FileNotFoundException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
@@ -26,12 +25,11 @@ public class FileHandler {
 
             var file = Paths.get(fileName);
 
-            Files.createFile(file);
             var content = formatShapeFileContent(drawing);
             Files.writeString(file, content, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);        }
         catch (Exception e)
         {
-            System.err.println(e.getMessage());
+            System.err.println("Error saving file" + e.getMessage());
         }
     }
 
