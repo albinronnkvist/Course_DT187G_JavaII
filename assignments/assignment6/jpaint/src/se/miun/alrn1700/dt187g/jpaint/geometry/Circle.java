@@ -20,8 +20,8 @@ public class Circle extends Shape {
         super(point, color);
     }
 
-    public Circle(ArrayList<Point> points, String color) {
-        super(points, color);
+    public Circle(Point point1, Point point2, String color) {
+        super(new ArrayList<Point>(Arrays.asList(point1, point2)), color);
     }
 
     public Circle(double x, double y, String color) {
@@ -29,10 +29,7 @@ public class Circle extends Shape {
     }
 
     public Circle(double x1, double y1, double x2, double y2, String color) {
-        this(new ArrayList<Point>(Arrays.asList(
-                new Point(x1, y1),
-                new Point(x2, y2)))
-            , color);
+        this(new Point(x1, y1), new Point(x2, y2), color);
     }
 
     public double getRadius() {

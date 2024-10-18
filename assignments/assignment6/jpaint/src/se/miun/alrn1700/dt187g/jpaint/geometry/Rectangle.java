@@ -19,8 +19,8 @@ public class Rectangle extends Shape {
         super(p, color);
     }
 
-    public Rectangle(ArrayList<Point> points, String color) {
-        super(points, color);
+    public Rectangle(Point point1, Point point2, String color) {
+        super(new ArrayList<Point>(Arrays.asList(point1, point2)), color);    
     }
 
     public Rectangle(double x, double y, String color) {
@@ -28,10 +28,7 @@ public class Rectangle extends Shape {
     }
 
     public Rectangle(double x1, double y1, double x2, double y2, String color) {
-        this(new ArrayList<Point>(Arrays.asList(
-                new Point(x1, y1),
-                new Point(x2, y2)))
-            , color);
+        this(new Point(x1, y1), new Point(x2, y2), color);
     }
 
     public double getWidth() {

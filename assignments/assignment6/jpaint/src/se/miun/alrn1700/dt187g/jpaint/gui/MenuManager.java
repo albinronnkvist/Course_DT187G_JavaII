@@ -235,6 +235,8 @@ public class MenuManager {
 					return;
 				}
 
+				// The file has to be in the project root directory, you can't open files in another folder,
+				// Since only file name is allowed to be passed to FileHandler.load()
 				var file = fileChooser.getSelectedFile();
 				var drawing = FileHandler.load(file.getName());
 
@@ -245,9 +247,11 @@ public class MenuManager {
 			}
 			catch(FileNotFoundException e) {
 				showErrorDialog("File not found");
+				System.err.println(e.getMessage());
 			}
 			catch (Exception e) {
 				showErrorDialog("Error loading file");
+				System.err.println(e.getMessage());
 			}
 		};
 	}
@@ -280,6 +284,7 @@ public class MenuManager {
 				FileHandler.save(drawing, file.getName());
 			} catch (Exception e) {
 				showErrorDialog("Error saving file");
+				System.err.println(e.getMessage());
 			}
 		};
 	}

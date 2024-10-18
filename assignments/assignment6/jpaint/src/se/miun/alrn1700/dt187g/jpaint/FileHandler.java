@@ -15,48 +15,30 @@ public class FileHandler {
     private static final String delimiter = ",";
 
     public static void save(Drawing drawing, String fileName) throws Exception {
-        try
+        if(!inputIsValid(drawing, fileName))
         {
-            if(!inputIsValid(drawing, fileName))
-            {
-                System.err.println("Invalid input");
-                return;
-            }
-
-            if (!fileName.endsWith(".shape")) {
-                fileName += ".shape";
-            }
-
-            var file = Paths.get(fileName);
-
-            var content = formatShapeFileContent(drawing);
-            Files.writeString(file, content, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);        }
-        catch (Exception e)
-        {
-            System.err.println("Error saving file" + e.getMessage());
-            throw e;
+            System.err.println("Invalid input");
+            return;
         }
+
+        if (!fileName.endsWith(".shape")) {
+            fileName += ".shape";
+        }
+
+        var file = Paths.get(fileName);
+        var content = formatDrawingFile(drawing);
+        Files.writeString(file, content, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING); 
     }
 
     public static Drawing load(String fileName) throws FileNotFoundException, Exception {
-        try {
-            var file = Paths.get(fileName);
-            if(!Files.exists(file) || !Files.isRegularFile(file))
-            {
-                throw new FileNotFoundException("File '" + fileName + "' does not exist or is not a regular file: ");
-            }
+        var file = Paths.get(fileName);
+        if(!Files.exists(file) || !Files.isRegularFile(file))
+        {
+            throw new FileNotFoundException("File '" + fileName + "' does not exist or is not a regular file: ");
+        }
 
-            var lines = Files.readAllLines(file);
-            return parseShapeFileContent(lines);
-        }
-        catch (FileNotFoundException e) {
-            System.err.println("File not found: " + e.getMessage());
-            throw e;
-        } 
-        catch (Exception e) {
-            System.err.println("Error loading file: " + e.getMessage());
-            throw e;
-        }
+        var lines = Files.readAllLines(file);
+        return parseDrawingFile(lines);
     }
 
     private static boolean inputIsValid(Drawing drawing, String fileName) {
@@ -64,7 +46,7 @@ public class FileHandler {
             return false;
         }
 
-        if(fileName == null || fileName.isBlank()) {
+        if(isNullOrBlank(fileName)) {
             return false;
         }
 
@@ -75,42 +57,50 @@ public class FileHandler {
         return str == null || str.isBlank();
     }
 
-    private static String formatShapeFileContent(Drawing drawing) {
+    private static String formatDrawingFile(Drawing drawing) {
         StringBuilder content = new StringBuilder();
         content.append(isNullOrBlank(drawing.getName()) ? "[not specified]" : drawing.getName()).append("\n");
         content.append(isNullOrBlank(drawing.getAuthor()) ? "[not specified]" : drawing.getAuthor()).append("\n");
 
-        content.append(drawing.getShapes().stream()
-            .map(shape -> {
-                var pointsString = shape.getPoints().stream()
-                        .map(point -> String.format("%d, %d", (int) point.getX(), (int) point.getY()))
-                        .collect(Collectors.joining(delimiter));
+        return content.append(drawing.getShapes().stream()
+            .map(shape -> formatDrawingShape(shape))
+            .collect(Collectors.joining("\n")))
+            .toString();
+    }
 
-                return String.format("%s, %s, %s", shape.getClass().getSimpleName(), pointsString, shape.getColor());
-            })
-            .collect(Collectors.joining("\n")));
-
+    private static String formatDrawingShape(Shape shape) {
+        StringBuilder content = new StringBuilder();
+    
+        content.append(shape.getClass().getSimpleName()).append(delimiter);
+    
+        shape.getPoints().stream()
+            .forEach(point -> content
+                .append((int) point.getX())
+                .append(delimiter)
+                .append((int) point.getY())
+                .append(delimiter));
+    
+        content.append(shape.getColor());
+    
         return content.toString();
     }
 
-    private static Drawing parseShapeFileContent(List<String> lines) throws Exception {
-        var name = lines.size() > 0 ? lines.get(0) : "[not specified]";
-        var author = lines.size() > 1 ? lines.get(1) : "[not specified]";
+    private static Drawing parseDrawingFile(List<String> lines) throws Exception {
+        var name = lines.get(0);
+        var author = lines.get(1);
 
         var drawing = new Drawing(name, author);
 
-        for (int i = 2; i < lines.size(); i++) {
-            var line = lines.get(i);
-            var shape = parseShape(line);
-            if (shape != null) {
-                drawing.addShape(shape);
-            }
-        }
+        lines.stream()
+            .skip(2)
+            .map(shape -> parseDrawingShape(shape))
+            .filter(shape -> shape != null)
+            .forEach(drawing::addShape);
 
         return drawing;
     }
 
-    private static Shape parseShape(String line) {
+    private static Shape parseDrawingShape(String line) {
         var parts = line.split(delimiter);
         if (parts.length < 6) {
             System.err.println("Invalid shape format: " + line);
