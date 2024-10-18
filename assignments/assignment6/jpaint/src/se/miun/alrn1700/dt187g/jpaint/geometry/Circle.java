@@ -10,16 +10,29 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Circle extends Shape {
     private final double PI = 3.14159265;
 
-    public Circle(Point p, String color) {
-        super(p, color);
+    public Circle(Point point, String color) {
+        super(point, color);
+    }
+
+    public Circle(ArrayList<Point> points, String color) {
+        super(points, color);
     }
 
     public Circle(double x, double y, String color) {
         this(new Point(x, y), color);
+    }
+
+    public Circle(double x1, double y1, double x2, double y2, String color) {
+        this(new ArrayList<Point>(Arrays.asList(
+                new Point(x1, y1),
+                new Point(x2, y2)))
+            , color);
     }
 
     public double getRadius() {

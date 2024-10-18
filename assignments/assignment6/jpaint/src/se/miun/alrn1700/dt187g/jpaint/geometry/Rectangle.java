@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Rectangle extends Shape {
 
@@ -17,8 +19,19 @@ public class Rectangle extends Shape {
         super(p, color);
     }
 
+    public Rectangle(ArrayList<Point> points, String color) {
+        super(points, color);
+    }
+
     public Rectangle(double x, double y, String color) {
         this(new Point(x, y), color);
+    }
+
+    public Rectangle(double x1, double y1, double x2, double y2, String color) {
+        this(new ArrayList<Point>(Arrays.asList(
+                new Point(x1, y1),
+                new Point(x2, y2)))
+            , color);
     }
 
     public double getWidth() {

@@ -1,6 +1,7 @@
 package se.miun.alrn1700.dt187g.jpaint.geometry;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import se.miun.alrn1700.dt187g.jpaint.Drawable;
 
@@ -16,11 +17,13 @@ public abstract class Shape implements Drawable {
     protected ArrayList<Point> points;
 
     public Shape(Point p, String color) {
-        this.color = color;
-        this.points = new ArrayList<Point>();
-        this.points.add(p);
+        this(new ArrayList<Point>(Arrays.asList(p)), color);
     }
 
+    public Shape(ArrayList<Point> points, String color) {
+        this.color = color;
+        this.points = points;
+    }
     
     public String getColor() {
         return this.color;
