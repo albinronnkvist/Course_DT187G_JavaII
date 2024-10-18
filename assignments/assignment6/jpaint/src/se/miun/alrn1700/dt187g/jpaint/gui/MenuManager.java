@@ -2,11 +2,13 @@ package se.miun.alrn1700.dt187g.jpaint.gui;
 
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.*;
+
 
 import se.miun.alrn1700.dt187g.jpaint.Drawing;
 import se.miun.alrn1700.dt187g.jpaint.DrawingException;
@@ -108,15 +110,14 @@ public class MenuManager {
 			drawingPanel.setShapeFilter(s -> s instanceof Rectangle);
 		});
 
-        var group = new ButtonGroup();
-        group.add(optionAll);
-        group.add(optionCircle);
-        group.add(optionRectangle);
 
+		var group = new ButtonGroup();
 		var filterMenu = new JMenu(sFilter);
-		filterMenu.add(optionAll);
-		filterMenu.add(optionCircle);
-		filterMenu.add(optionRectangle);
+		var menuOptions = Arrays.asList(optionAll, optionCircle, optionRectangle);
+		menuOptions.forEach(option -> {
+			group.add(option);
+			filterMenu.add(option);
+		});
 
 		menu.add(filterMenu);
 	}
@@ -260,8 +261,7 @@ public class MenuManager {
 					return;
 				}
 
-				// All files will be saved in the project root directory even if you specify
-				// another folder,
+				// All files will be saved in the project root directory even if you specify another folder,
 				// Since only file name is allowed to be passed to FileHandler.save()
 				var fileChooser = new JFileChooser();
 				fileChooser.setAcceptAllFileFilterUsed(false);
