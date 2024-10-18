@@ -1,5 +1,7 @@
 package se.miun.alrn1700.dt187g.jpaint.gui;
 
+import java.util.function.Predicate;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -17,6 +19,7 @@ public class DrawingPanel extends JPanel {
 	private boolean drawIsActive;
 	private String activeShape;
 	private int x1, y1, x2, y2;
+	private Predicate<Shape> shapeFilter;
 
 	public DrawingPanel() {
 		this(Color.WHITE);
@@ -69,6 +72,11 @@ public class DrawingPanel extends JPanel {
 		this.y2 = y;
 	}
 
+	public void setShapeFilter(Predicate<Shape> shapeFilter) {
+		this.shapeFilter = shapeFilter;
+		repaint();
+	}
+
 	public void removeShape(int index) {
 		drawing.removeShape(index);
 	}
@@ -109,7 +117,11 @@ public class DrawingPanel extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		drawing.draw(g);
+
+		drawing.getShapes().stream()
+			.filter(shapeFilter)
+			.forEach(shape -> shape.draw(g));
+		
 		Graphics2D g2 = (Graphics2D) g;
 		if (drawIsActive) {
 			g2.setColor(drawColor);

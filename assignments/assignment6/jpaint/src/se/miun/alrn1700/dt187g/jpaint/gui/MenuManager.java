@@ -5,14 +5,14 @@ import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 
-import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
+import javax.swing.*;
 
 import se.miun.alrn1700.dt187g.jpaint.Drawing;
 import se.miun.alrn1700.dt187g.jpaint.DrawingException;
 import se.miun.alrn1700.dt187g.jpaint.FileHandler;
+import se.miun.alrn1700.dt187g.jpaint.geometry.Circle;
+import se.miun.alrn1700.dt187g.jpaint.geometry.Rectangle;
 
 public class MenuManager {
 	private FileNameExtensionFilter shapeFilter = new FileNameExtensionFilter("Shape Files", "shape");
@@ -34,7 +34,7 @@ public class MenuManager {
 	private void createMenu() {
 		createFileMenu();
 		createEditMenu();
-		createFilterMenu(); // TODO for assignment 6
+		createFilterMenu();
 	}
 
 	private void createFileMenu() {
@@ -86,8 +86,39 @@ public class MenuManager {
 
 	}
 
+
 	private void createFilterMenu() {
-		// TODO for assignment 6
+		final String sFilter = "Filter";
+		var optionAll = new JRadioButtonMenuItem("All");
+        var optionCircle = new JRadioButtonMenuItem("Circle");
+        var optionRectangle = new JRadioButtonMenuItem("Rectangle");
+		
+		optionAll.setSelected(true);
+		drawingPanel.setShapeFilter(s -> true);
+
+		optionAll.addActionListener(al -> {
+			drawingPanel.setShapeFilter(s -> true);
+		});
+
+		optionCircle.addActionListener(al -> {
+			drawingPanel.setShapeFilter(s -> s instanceof Circle);
+		});
+
+		optionRectangle.addActionListener(al -> {
+			drawingPanel.setShapeFilter(s -> s instanceof Rectangle);
+		});
+
+        var group = new ButtonGroup();
+        group.add(optionAll);
+        group.add(optionCircle);
+        group.add(optionRectangle);
+
+		var filterMenu = new JMenu(sFilter);
+		filterMenu.add(optionAll);
+		filterMenu.add(optionCircle);
+		filterMenu.add(optionRectangle);
+
+		menu.add(filterMenu);
 	}
 
 	private ActionListener createNewDrawingAction() {
