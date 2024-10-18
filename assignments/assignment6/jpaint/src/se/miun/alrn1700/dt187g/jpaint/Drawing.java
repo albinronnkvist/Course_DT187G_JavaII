@@ -61,6 +61,10 @@ public class Drawing implements Drawable {
         this.author = author;
     }
 
+    public ArrayList<Shape> getShapes() {
+        return this.shapes;
+    }
+
     public void addShape(Shape shape) {
         if(shape != null)
         {
