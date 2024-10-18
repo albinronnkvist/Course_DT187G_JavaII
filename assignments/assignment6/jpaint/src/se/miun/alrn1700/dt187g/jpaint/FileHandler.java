@@ -86,8 +86,8 @@ public class FileHandler {
     }
 
     private static Drawing parseDrawingFile(List<String> lines) throws Exception {
-        var name = lines.get(0);
-        var author = lines.get(1);
+        var name = lines.size() > 0 ? lines.get(0) : "[not specified]";
+        var author = lines.size() > 1 ? lines.get(1) : "[not specified]";
 
         var drawing = new Drawing(name, author);
 
