@@ -48,5 +48,9 @@ public abstract class Shape implements Drawable {
         addPoint(new Point(x, y));
     }
 
+    public ArrayList<Point> getPoints() {
+        return this.points;
+    }
+
     public abstract boolean hasEndpoint();
 }
