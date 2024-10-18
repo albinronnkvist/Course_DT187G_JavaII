@@ -11,8 +11,6 @@ import se.miun.alrn1700.dt187g.jpaint.geometry.Rectangle;
 import se.miun.alrn1700.dt187g.jpaint.geometry.Shape;
 
 public class FileHandler {
-    private static final Path baseFolder = Paths.get("drawings").toAbsolutePath();
-
     public static void save(Drawing drawing, String fileName) {
         try
         {
@@ -26,17 +24,11 @@ public class FileHandler {
                 fileName += ".shape";
             }
 
-            var file = baseFolder.resolve(fileName);
-            Files.createDirectories(file.getParent());
-            if (Files.exists(file)) {
-                System.err.println("File already exists: " + file);
-                return;
-            }
+            var file = Paths.get(fileName);
 
             Files.createFile(file);
             var content = formatShapeFileContent(drawing);
-            Files.writeString(file, content, StandardOpenOption.WRITE);
-        }
+            Files.writeString(file, content, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);        }
         catch (Exception e)
         {
             System.err.println(e.getMessage());
@@ -45,7 +37,7 @@ public class FileHandler {
 
     public static Drawing load(String fileName) throws FileNotFoundException {
         try {
-            var file = baseFolder.resolve(fileName);
+            var file = Paths.get(fileName);
             if(!Files.exists(file) || !Files.isRegularFile(file))
             {
                 throw new FileNotFoundException();
