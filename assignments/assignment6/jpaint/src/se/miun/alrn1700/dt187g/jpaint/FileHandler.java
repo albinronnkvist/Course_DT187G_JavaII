@@ -34,7 +34,7 @@ public class FileHandler {
         var file = Paths.get(fileName);
         if(!Files.exists(file) || !Files.isRegularFile(file))
         {
-            throw new FileNotFoundException("File '" + fileName + "' does not exist or is not a regular file: ");
+            throw new FileNotFoundException("File '" + fileName + "' does not exist or is not a regular file");
         }
 
         var lines = Files.readAllLines(file);
