@@ -3,13 +3,17 @@ package se.miun.alrn1700.dt187g.jpaint.gui;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import se.miun.alrn1700.dt187g.jpaint.Drawing;
 import se.miun.alrn1700.dt187g.jpaint.DrawingException;
+import se.miun.alrn1700.dt187g.jpaint.FileHandler;
 
 public class MenuManager {
+	private FileNameExtensionFilter shapeFilter = new FileNameExtensionFilter("Shape Files", "shape");
     private JPaintFrame frame;
     private DrawingPanel drawingPanel;
     private Menu menu;
@@ -99,6 +103,7 @@ public class MenuManager {
 				drawingPanel.setDrawing(new Drawing(name, author));
 				frame.setDrawingTitle(name, author);	
 				frame.updateHeader();
+				drawingPanel.repaint();
 			}
 			catch (DrawingException e) {
 				showErrorDialog(e.getMessage());
@@ -194,7 +199,30 @@ public class MenuManager {
 
 	private ActionListener createSaveAction() {
 		return al -> {
-			// TODO for assignment 6
+			try {
+				var drawing = drawingPanel.getDrawing();
+				if(drawing == null) {
+					showErrorDialog("You must create a new drawing before you can save it");
+					return;
+				}
+	
+				var fileChooser = new JFileChooser();
+				fileChooser.setAcceptAllFileFilterUsed(false);
+				fileChooser.setFileFilter(shapeFilter);
+	
+				var option = fileChooser.showSaveDialog(frame);
+				if (option == JFileChooser.CANCEL_OPTION) {
+					return;
+				}
+	
+				var file = fileChooser.getSelectedFile();
+	
+				FileHandler.save(drawing, file.getName());
+			}
+			catch (Exception e) {
+				showErrorDialog("Error saving file");
+				System.err.println(e.getMessage());
+			}
 		};
 	}
 
