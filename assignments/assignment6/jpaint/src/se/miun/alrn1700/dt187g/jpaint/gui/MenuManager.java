@@ -2,6 +2,7 @@ package se.miun.alrn1700.dt187g.jpaint.gui;
 
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 
 import javax.swing.JFileChooser;
@@ -15,29 +16,28 @@ import se.miun.alrn1700.dt187g.jpaint.FileHandler;
 
 public class MenuManager {
 	private FileNameExtensionFilter shapeFilter = new FileNameExtensionFilter("Shape Files", "shape");
-    private JPaintFrame frame;
-    private DrawingPanel drawingPanel;
-    private Menu menu;
-    
+	private JPaintFrame frame;
+	private DrawingPanel drawingPanel;
+	private Menu menu;
 
-    public MenuManager(JPaintFrame frame, DrawingPanel drawingPanel) {
-        this.frame = frame;
-        this.drawingPanel = drawingPanel;
-        this.menu = new Menu();
-        createMenu();
-    }
-    
-    public Menu getMenu() {
-        return menu;
-    }
+	public MenuManager(JPaintFrame frame, DrawingPanel drawingPanel) {
+		this.frame = frame;
+		this.drawingPanel = drawingPanel;
+		this.menu = new Menu();
+		createMenu();
+	}
 
-    private void createMenu() {
-        createFileMenu();
-        createEditMenu();
-        createFilterMenu(); // TODO for assignment 6
-    }
+	public Menu getMenu() {
+		return menu;
+	}
 
-    private void createFileMenu() {
+	private void createMenu() {
+		createFileMenu();
+		createEditMenu();
+		createFilterMenu(); // TODO for assignment 6
+	}
+
+	private void createFileMenu() {
 		final String sFile = "File";
 		menu.addJMenu(sFile);
 		menu.getJMenu(0).setMnemonic(KeyEvent.VK_F);
@@ -52,7 +52,8 @@ public class MenuManager {
 
 		menu.getJMenu(0).addSeparator();
 		menu.addJMenuItem(sFile, "Exit", al -> {
-			int confirm = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
+			int confirm = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit?", "Exit",
+					JOptionPane.YES_NO_OPTION);
 			if (confirm == JOptionPane.YES_OPTION) {
 				System.exit(0);
 			}
@@ -60,7 +61,7 @@ public class MenuManager {
 
 	}
 
-    private void createEditMenu() {
+	private void createEditMenu() {
 		final String sEdit = "Edit";
 		final String sDrawing = "Drawing";
 		menu.addJMenu(sEdit);
@@ -72,10 +73,11 @@ public class MenuManager {
 		menu.addJMenuItem(sDrawing, "Name...", createChangeNameAction());
 		menu.addJMenuItem(sDrawing, "Author...", createChangeAuthorAction());
 
-		/* Denna rad, som du inte får ta bort, kommer skapa ett NullException.
+		/*
+		 * Denna rad, som du inte får ta bort, kommer skapa ett NullException.
 		 * Du måste hantera denna situation i Menu-klassen. I vanliga fall
-		 * hade det varit rimligt att ett Exception kastades (klienten bör 
-		 * i vanliga fall göras medveten om att den försöker skapa ett 
+		 * hade det varit rimligt att ett Exception kastades (klienten bör
+		 * i vanliga fall göras medveten om att den försöker skapa ett
 		 * JMenuItem till en JMenu som inte existerar), men nu räcker
 		 * det med att ingenting alls händer i det läget man anropar
 		 * addJMenuItem med en sträng som inte kan hittas.
@@ -83,52 +85,49 @@ public class MenuManager {
 		menu.addJMenuItem("This JMenu doesn't exist", "abc");
 
 	}
-    
-    private void createFilterMenu() {
+
+	private void createFilterMenu() {
 		// TODO for assignment 6
 	}
-    
-    private ActionListener createNewDrawingAction() {
+
+	private ActionListener createNewDrawingAction() {
 		return al -> {
 			try {
 				String name = promptUserInput("Enter the name of the new drawing:", "New Drawing");
-				if(name == null) {
+				if (name == null) {
 					return;
 				}
 
 				String author = promptUserInput("Enter the author of the new drawing:", "New Drawing");
-				if(author == null) {
+				if (author == null) {
 					return;
 				}
 
 				drawingPanel.setDrawing(new Drawing(name, author));
-				frame.setDrawingTitle(name, author);	
+				frame.setDrawingTitle(name, author);
 				frame.updateHeader();
 				drawingPanel.repaint();
-			}
-			catch (DrawingException e) {
+			} catch (DrawingException e) {
 				showErrorDialog(e.getMessage());
-			}
-			catch(Exception e){
+			} catch (Exception e) {
 				System.err.println(e.getMessage());
 			}
 		};
 	}
 
-    private ActionListener createChangeNameAction() {
+	private ActionListener createChangeNameAction() {
 		return al -> {
 			try {
 				String name = promptUserInput("Enter the new name:", "Change Name");
 				if (name == null) {
 					return;
 				}
-	
+
 				var drawing = drawingPanel.getDrawing();
 				drawing.setName(name);
 				frame.setDrawingTitle(name, drawing.getAuthor());
 				frame.updateHeader();
-			}
-			catch (DrawingException e) {
+			} catch (DrawingException e) {
 				showErrorDialog(e.getMessage());
 			}
 		};
@@ -141,13 +140,12 @@ public class MenuManager {
 				if (author == null) {
 					return;
 				}
-	
+
 				var drawing = drawingPanel.getDrawing();
 				drawing.setAuthor(author);
 				frame.setDrawingTitle(drawing.getName(), author);
 				frame.updateHeader();
-			}
-			catch (DrawingException e) {
+			} catch (DrawingException e) {
 				showErrorDialog(e.getMessage());
 			}
 		};
@@ -161,11 +159,11 @@ public class MenuManager {
 			drawingPanel.repaint();
 		};
 	}
-	
+
 	private ActionListener showInfoAction() {
 		return al -> {
 			var drawing = drawingPanel.getDrawing();
-			if(drawing == null) {
+			if (drawing == null) {
 				JOptionPane.showMessageDialog(frame, "No drawing selected", "Info", JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
@@ -194,7 +192,31 @@ public class MenuManager {
 
 	private ActionListener createLoadAction() {
 		return al -> {
-			// TODO for assignment 6
+			try {
+				var fileChooser = new JFileChooser();
+				fileChooser.setAcceptAllFileFilterUsed(false);
+				fileChooser.setFileFilter(shapeFilter);
+				fileChooser.setCurrentDirectory(Paths.get("").toAbsolutePath().toFile());
+
+				var option = fileChooser.showOpenDialog(frame);
+				if (option == JFileChooser.CANCEL_OPTION) {
+					return;
+				}
+
+				var file = fileChooser.getSelectedFile();
+				var drawing = FileHandler.load(file.getName());
+
+				drawingPanel.setDrawing(drawing);
+				frame.setDrawingTitle(drawing.getName(), drawing.getAuthor());
+				frame.updateHeader();
+				drawingPanel.repaint();
+			}
+			catch(FileNotFoundException e) {
+				showErrorDialog("File not found");
+			}
+			catch (Exception e) {
+				showErrorDialog("Error loading file");
+			}
 		};
 	}
 
@@ -202,29 +224,31 @@ public class MenuManager {
 		return al -> {
 			try {
 				var drawing = drawingPanel.getDrawing();
-				if(drawing == null) {
+				if (drawing == null) {
 					showErrorDialog("You must create a new drawing before you can save it");
 					return;
 				}
-	
+
+				// All files will be saved in the project root directory even if you specify
+				// another folder,
+				// Since only file name is allowed to be passed to FileHandler.save()
 				var fileChooser = new JFileChooser();
 				fileChooser.setAcceptAllFileFilterUsed(false);
 				fileChooser.setFileFilter(shapeFilter);
 				fileChooser.setCurrentDirectory(Paths.get("").toAbsolutePath().toFile());
-				fileChooser.setSelectedFile(new java.io.File((isNullOrBlank(drawing.getName()) ? "[Untitled]" : drawing.getName()) + ".shape"));
-	
+				fileChooser.setSelectedFile(new java.io.File(
+						(isNullOrBlank(drawing.getName()) ? "[Untitled]" : drawing.getName()) + ".shape"));
+
 				var option = fileChooser.showSaveDialog(frame);
 				if (option == JFileChooser.CANCEL_OPTION) {
 					return;
 				}
-	
+
 				var file = fileChooser.getSelectedFile();
-	
+
 				FileHandler.save(drawing, file.getName());
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				showErrorDialog("Error saving file");
-				System.err.println("Error saving file" + e.getMessage());
 			}
 		};
 	}
