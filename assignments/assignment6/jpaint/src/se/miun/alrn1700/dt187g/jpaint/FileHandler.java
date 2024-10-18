@@ -12,6 +12,8 @@ import se.miun.alrn1700.dt187g.jpaint.geometry.Rectangle;
 import se.miun.alrn1700.dt187g.jpaint.geometry.Shape;
 
 public class FileHandler {
+    private static final String delimiter = ",";
+
     public static void save(Drawing drawing, String fileName) throws Exception {
         try
         {
@@ -82,7 +84,7 @@ public class FileHandler {
             .map(shape -> {
                 var pointsString = shape.getPoints().stream()
                         .map(point -> String.format("%d, %d", (int) point.getX(), (int) point.getY()))
-                        .collect(Collectors.joining(", "));
+                        .collect(Collectors.joining(delimiter));
 
                 return String.format("%s, %s, %s", shape.getClass().getSimpleName(), pointsString, shape.getColor());
             })
@@ -109,7 +111,7 @@ public class FileHandler {
     }
 
     private static Shape parseShape(String line) {
-        var parts = line.split(", ");
+        var parts = line.split(delimiter);
         if (parts.length < 6) {
             System.err.println("Invalid shape format: " + line);
             return null;
